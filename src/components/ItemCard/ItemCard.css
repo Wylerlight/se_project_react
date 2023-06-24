@@ -1,0 +1,61 @@
+.clothing {
+  width: 100%;
+}
+
+.clothing__title {
+  margin: 40px 0px 34px 0px;
+  font-family: 'Familjen Grotesk', sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.clothing__cards-wrapper {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+  margin: 0;
+  padding: 0;
+}
+
+.clothing__cards-items {
+  position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5%;
+}
+
+.clothing-card-title {
+  position: absolute;
+  margin: 0;
+  top: 18px;
+  left: 127px;
+  text-align: center;
+  font-family: 'Familjen Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #fff;
+  border-radius: 4px;
+  width: 73px;
+}
+
+.clothing-card-individual {
+  border-radius: 5%;
+  width: 328px;
+  height: 328px;
+}
+
+#clothing__cards-items_sneaker {
+  position: relative;
+  width: 328px;
+  height: 328px;
+  background-color: #e9e9e9;
+}
+
+#clothing-card-individual_sneaker {
+  position: absolute;
+  top: 51px;
+  left: 51px;
+  width: 226px;
+  height: 226px;
+}
