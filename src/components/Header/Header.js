@@ -2,7 +2,6 @@ import React from 'react';
 import logo from '../../Logo.svg';
 import avatar from '../images/AvatarPicture.png';
 import './Header.css';
-// import Api from '../../utils/WeatherApi';
 
 const Header = () => {
   const currentDate = new Date().toLocaleString('default', {
