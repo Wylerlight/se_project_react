@@ -17,6 +17,20 @@ function App() {
   const location = responseEx.name;
 
   const [modalOpened, setModalOpened] = React.useState('');
+  /// option 1
+  useEffect(() => {
+    const handleEscClose = (evt) => {
+      if (evt.key === 'Escape') {
+        setModalOpened('');
+        console.log('Esc key clicked: close');
+      }
+    };
+    window.addEventListener('keydown', handleEscClose);
+
+    return () => {
+      window.removeEventListener('keydown', handleEscClose);
+    };
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,7 +48,7 @@ function App() {
       console.log('Esc key clicked: close');
     }
   };
-
+  /// option 2
   const handleCloseModal = () => {
     setModalOpened('');
     {
