@@ -39,3 +39,116 @@ export const defaultClothingItems = [
     link: 'https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/Coat.png?etag=298717ed89d5e40b1954a1831ae0bdd4',
   },
 ];
+
+export const weatherOptions = [
+  {
+    url: require('../components/images/DaySunny.svg').default,
+    day: true,
+    type: 'sunny',
+  },
+  {
+    url: require('../components/images/DayStorm.svg').default,
+    day: true,
+    type: 'storm',
+  },
+  {
+    url: require('../components/images/DaySnow.svg').default,
+    day: true,
+    type: 'snow',
+  },
+  {
+    url: require('../components/images/DayRain.svg').default,
+    day: true,
+    type: 'Rain',
+  },
+  {
+    url: require('../components/images/DayFog.svg').default,
+    day: true,
+    type: 'fog',
+  },
+  {
+    url: require('../components/images/DayCloudy.svg').default,
+    day: true,
+    type: 'cloudy',
+  },
+  {
+    url: require('../components/images/NightSunny.svg').default,
+    day: false,
+    type: 'sunny',
+  },
+  {
+    url: require('../components/images/NightStorm.svg').default,
+    day: false,
+    type: 'storm',
+  },
+  {
+    url: require('../components/images/NightSnow.svg').default,
+    day: false,
+    type: 'snow',
+  },
+  {
+    url: require('../components/images/NightRain.svg').default,
+    day: false,
+    type: 'rain',
+  },
+  {
+    url: require('../components/images/NightFog.svg').default,
+    day: false,
+    type: 'fog',
+  },
+  {
+    url: require('../components/images/NightCloudy.svg').default,
+    day: false,
+    type: 'cloudy',
+  },
+];
+
+export const responseEx = {
+  coord: {
+    lon: 10.99,
+    lat: 44.34,
+  },
+  weather: [
+    {
+      id: 501,
+      main: 'Rain',
+      description: 'moderate rain',
+      icon: '10d',
+    },
+  ],
+  base: 'stations',
+  main: {
+    temp: 298.48,
+    feels_like: 298.74,
+    temp_min: 297.56,
+    temp_max: 300.05,
+    pressure: 1015,
+    humidity: 64,
+    sea_level: 1015,
+    grnd_level: 933,
+  },
+  visibility: 10000,
+  wind: {
+    speed: 0.62,
+    deg: 349,
+    gust: 1.18,
+  },
+  rain: {
+    '1h': 3.16,
+  },
+  clouds: {
+    all: 100,
+  },
+  dt: 1661870592,
+  sys: {
+    type: 2,
+    id: 2075663,
+    country: 'IT',
+    sunrise: 1661834187,
+    sunset: 1661882248,
+  },
+  timezone: 7200,
+  id: 3163858,
+  name: 'Zocca',
+  cod: 200,
+};

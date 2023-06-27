@@ -12,12 +12,14 @@
 .clothing__cards-wrapper {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
   margin: 0;
   padding: 0;
+  gap: 11px;
 }
 
-.clothing__cards-items {
+.clothing__card-items {
   position: relative;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 5%;
@@ -45,14 +47,14 @@
   height: 328px;
 }
 
-#clothing__cards-items_sneaker {
+#clothing__card-items_Sneakers {
   position: relative;
   width: 328px;
   height: 328px;
   background-color: #e9e9e9;
 }
 
-#clothing-card-individual_sneaker {
+#clothing-card-individual_Sneakers {
   position: absolute;
   top: 51px;
   left: 51px;

@@ -3,20 +3,33 @@ import logo from '../../Logo.svg';
 import avatar from '../images/AvatarPicture.png';
 import './Header.css';
 
-const Header = () => {
+const Header = ({ locationData, openAddClothesModal }) => {
   const currentDate = new Date().toLocaleString('default', {
     month: 'long',
     day: 'numeric',
   });
+  const location = locationData;
+  console.log(openAddClothesModal, 'Add Clothes button clicked');
+
+  /*  const addClothesButton = document.querySelector(
+    '.header__add-clothes-button'
+  ); */
+  // addClothesButton.addEventListener('click', openModal);
 
   return (
     <header className="header">
       <section className="header__section header__section-left">
         <img alt="logo" src={logo} className="header__logo" />
-        <p>{currentDate}</p>
+        <p>
+          {currentDate}, {location}
+        </p>
       </section>
       <section className="header__section header__section-right">
-        <button className="header__add-clothes-button" type="button">
+        <button
+          className="header__add-clothes-button"
+          type="button"
+          onClick={openAddClothesModal}
+        >
           Add Clothes
         </button>
         <p className="avatar__name">Tyler Tellez</p>
