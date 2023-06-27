@@ -18,7 +18,7 @@ function App() {
 
   const [modalOpened, setModalOpened] = React.useState('');
   /// option 1
-  useEffect(() => {
+  /* useEffect(() => {
     const handleEscClose = (evt) => {
       if (evt.key === 'Escape') {
         setModalOpened('');
@@ -30,7 +30,7 @@ function App() {
     return () => {
       window.removeEventListener('keydown', handleEscClose);
     };
-  }, []);
+  }, []); */
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,12 +51,10 @@ function App() {
   /// option 2
   const handleCloseModal = () => {
     setModalOpened('');
-    {
-      handleEscClose;
-    }
-    {
-      overlayClickClose;
-    }
+
+    // handleEscClose();
+
+    // overlayClickClose(e);
 
     console.log('handleCloseModal run');
   };
@@ -85,6 +83,7 @@ function App() {
             buttonText="Add clothes"
             onClose={handleCloseModal}
             handleSubmitForm={handleSubmit}
+            esClose={handleEscClose}
           >
             <AddClothes />
           </ModalWithForm>
