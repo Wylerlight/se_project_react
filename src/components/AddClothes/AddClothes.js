@@ -1,6 +1,6 @@
 import './AddClothes.css';
 
-const AddClothes = () => {
+const AddClothes = ({ radioClick }) => {
   return (
     <>
       <div className="modal__input">
@@ -32,16 +32,16 @@ const AddClothes = () => {
       <p className="modal__radio-title">Select weather type:</p>
       <div className="modal__radio-container">
         {/* pass in labels as props, map over them to addd radio labels */}
-        <label htmlFor="weather temp" className="modal__radio-buttons">
-          <input type="radio" name="weather temp" />
+        <label className="modal__radio-buttons" onChange={radioClick}>
+          <input type="radio" id="radioA" name="weather temp" />
           Hot
         </label>
-        <label htmlFor="weather temp" className="modal__radio-buttons">
-          <input type="radio" name="weather temp" />
+        <label className="modal__radio-buttons" onChange={radioClick}>
+          <input type="radio" id="radioB" name="weather temp" />
           Warm
         </label>
-        <label htmlFor="weather temp" className="modal__radio-buttons">
-          <input type="radio" name="weather temp" />
+        <label className="modal__radio-buttons" onChange={radioClick}>
+          <input type="radio" id="radioC" name="weather temp" />
           Cold
         </label>
       </div>

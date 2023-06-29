@@ -4,11 +4,10 @@ const ModalWithForm = ({
   name,
   buttonText,
   onClose,
-  esClose,
   handleSubmitForm,
 }) => {
   return (
-    <section className={`modal modal_type_${name}`} onKeyDown={esClose}>
+    <section className={`modal modal_type_${name}`} onClick={onClose}>
       <div className="modal__container ">
         <button
           className="modal__exit"

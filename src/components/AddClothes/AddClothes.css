@@ -42,3 +42,7 @@
 .modal__radio-buttons:last-child {
   margin: 0;
 }
+
+.modal__radio-buttons-enabled {
+  color: #000;
+}

@@ -8,21 +8,41 @@ import ItemCard from '../ItemCard/ItemCard';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import Footer from '../Footer/Footer';
 import AddClothes from '../AddClothes/AddClothes';
-import { getWeather } from '../../utils/weatherApi';
+import { getWeather } from '../../utils/WeatherApi';
 import { responseEx } from '../../utils/constants';
 
 function App() {
+  getWeather().then((data) => {
+    console.log(data);
+  });
+
   const weatherTempFromCode = responseEx['main']['temp'] + '°F';
   const weatherType = responseEx['weather'][0].main;
   const location = responseEx.name;
 
   const [modalOpened, setModalOpened] = React.useState('');
-  /// option 1
-  /* useEffect(() => {
+  const [radioButton, setRadioButton] = React.useState('');
+
+  /* Radio Button click functions */
+
+  const radioButtonClicked = (e) => {
+    /*   console.log(e.target, e.currentTarget);
+    console.log(`${e.target.id} clicked`);
+    let radioBtn = document.getElementById(`${e.target.id}`);
+    console.log(radioBtn); */
+    if (e.target === 'on') {
+      e.currentTarget.classList.add('modal__radio-buttons-enabled');
+    } else {
+      e.currentTarget.classList.remove('modal__radio-buttons-enabled');
+    }
+  };
+
+  // e.target.classList.add('radio__clicked');
+  /* Modal functions */
+  useEffect(() => {
     const handleEscClose = (evt) => {
       if (evt.key === 'Escape') {
         setModalOpened('');
-        console.log('Esc key clicked: close');
       }
     };
     window.addEventListener('keydown', handleEscClose);
@@ -30,40 +50,23 @@ function App() {
     return () => {
       window.removeEventListener('keydown', handleEscClose);
     };
-  }, []); */
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
   };
-  const overlayClickClose = (e) => {
+
+  const handleCloseModal = (e) => {
     if (e.target === e.currentTarget) {
       setModalOpened('');
-      console.log('overlay clicked');
     }
-  };
-
-  const handleEscClose = (evt) => {
-    if (evt.key === 'Escape') {
-      setModalOpened('');
-      console.log('Esc key clicked: close');
-    }
-  };
-  /// option 2
-  const handleCloseModal = () => {
-    setModalOpened('');
-
-    // handleEscClose();
-
-    // overlayClickClose(e);
-
-    console.log('handleCloseModal run');
   };
 
   const handleOpenModal = () => {
     setModalOpened('modal__opened');
     console.log('open modal pressed');
   };
-
+  //////////////////////////////////////////////
   return (
     <>
       <div className="App">
@@ -83,9 +86,8 @@ function App() {
             buttonText="Add clothes"
             onClose={handleCloseModal}
             handleSubmitForm={handleSubmit}
-            esClose={handleEscClose}
           >
-            <AddClothes />
+            <AddClothes radioClick={radioButtonClicked} />
           </ModalWithForm>
         )}
         {/* <ItemModal /> */}
