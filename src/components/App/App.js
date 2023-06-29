@@ -2,12 +2,14 @@ import React, { useEffect } from 'react';
 
 import './App.css';
 import '../ModalWithForm/ModalWithForm.css';
+import '../ItemModal/ItemModal.css';
 import Header from '../Header/Header';
 import WeatherCard from '../WeatherCard/WeatherCard';
 import ItemCard from '../ItemCard/ItemCard';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import Footer from '../Footer/Footer';
 import AddClothes from '../AddClothes/AddClothes';
+import ItemModal from '../ItemModal/ItemModal';
 import { getWeather } from '../../utils/WeatherApi';
 import { responseEx } from '../../utils/constants';
 
@@ -21,23 +23,15 @@ function App() {
   const location = responseEx.name;
 
   const [modalOpened, setModalOpened] = React.useState('');
+  const [selectedCard, setSelectedCard] = React.useState({});
   const [radioButton, setRadioButton] = React.useState('');
 
   /* Radio Button click functions */
 
   const radioButtonClicked = (e) => {
-    /*   console.log(e.target, e.currentTarget);
-    console.log(`${e.target.id} clicked`);
-    let radioBtn = document.getElementById(`${e.target.id}`);
-    console.log(radioBtn); */
-    if (e.target === 'on') {
-      e.currentTarget.classList.add('modal__radio-buttons-enabled');
-    } else {
-      e.currentTarget.classList.remove('modal__radio-buttons-enabled');
-    }
+    console.log(e.currentTarget);
   };
 
-  // e.target.classList.add('radio__clicked');
   /* Modal functions */
   useEffect(() => {
     const handleEscClose = (evt) => {
@@ -66,6 +60,20 @@ function App() {
     setModalOpened('modal__opened');
     console.log('open modal pressed');
   };
+
+  /* Item Card Image Modal functions */
+
+  const handleCloseItemModal = (e) => {
+    if (e.target === e.currentTarget) {
+      setModalOpened('');
+    }
+  };
+  const handleOpenItemModal = (e) => {
+    console.log(e.target);
+    setModalOpened('open');
+    // setSelectedCard(card);
+    console.log('item card image open');
+  };
   //////////////////////////////////////////////
   return (
     <>
@@ -76,7 +84,10 @@ function App() {
           type={weatherType}
           weatherTemp={weatherTempFromCode}
         />
-        <ItemCard temp={weatherTempFromCode} />
+        <ItemCard
+          temp={weatherTempFromCode}
+          openItemCardModal={handleOpenItemModal}
+        />
         {/* <Main /> */}
         <Footer />
         {modalOpened === 'modal__opened' && (
@@ -90,7 +101,9 @@ function App() {
             <AddClothes radioClick={radioButtonClicked} />
           </ModalWithForm>
         )}
-        {/* <ItemModal /> */}
+        {modalOpened === 'open' && (
+          <ItemModal onClose={handleCloseItemModal} cardImage={selectedCard} />
+        )}
       </div>
     </>
   );

@@ -1,7 +1,7 @@
 import './ItemCard.css';
 import { defaultClothingItems } from '../../utils/constants';
 
-const ItemCard = ({ temp }) => {
+const ItemCard = ({ temp, openItemCardModal }) => {
   return (
     <section className="clothing">
       <p className="clothing__title">Today is {temp} | You may want to wear:</p>
@@ -19,6 +19,7 @@ const ItemCard = ({ temp }) => {
                 id={`clothing-card-individual_${data.name}`}
                 alt={data.name}
                 src={data.link}
+                onClick={openItemCardModal}
               />
             </li>
           );

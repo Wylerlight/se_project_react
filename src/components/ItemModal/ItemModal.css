@@ -1,0 +1,50 @@
+@font-face {
+  font-family: 'Familjen Grotesk';
+  src: url(../../../public/fonts/FamiljenGrotesk-Regular.ttf);
+}
+
+.item__modal-container {
+  padding: 0;
+  width: 670px;
+  height: 368px;
+}
+
+.item__card {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+
+.item__card-image {
+  left: 19px;
+  border-radius: 19px;
+}
+
+.item__card-title {
+  position: absolute;
+  margin: 0;
+  top: 18px;
+  left: 127px;
+  text-align: center;
+  font-family: 'Familjen Grotesk', sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: #fff;
+  border-radius: 4px;
+  width: 54px;
+  height: 24px;
+}
+
+.item__card-weather {
+  position: absolute;
+  top: -15px;
+  right: -128px;
+  font-family: 'Familjen Grotesk', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  color: #000;
+}
