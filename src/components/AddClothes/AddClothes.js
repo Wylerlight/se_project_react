@@ -32,18 +32,52 @@ const AddClothes = ({ radioClick }) => {
       <p className="modal__radio-title">Select weather type:</p>
       <div className="modal__radio-container">
         {/* pass in labels as props, map over them to addd radio labels */}
-        <label className="modal__radio-buttons" onChange={radioClick}>
-          <input type="radio" id="radioA" name="weather_temp" />
-          Hot
-        </label>
-        <label className="modal__radio-buttons" onChange={radioClick}>
-          <input type="radio" id="radioB" name="weather_temp" />
-          Warm
-        </label>
-        <label className="modal__radio-buttons" onChange={radioClick}>
-          <input type="radio" id="radioC" name="weather_temp" />
-          Cold
-        </label>
+
+        <div className="radio__btn-container">
+          <input
+            className="radio__btns"
+            type="radio"
+            id="radioA"
+            name="weather_temp"
+          />
+          <label
+            htmlFor="radioA"
+            className="radio__btn-label"
+            onChange={radioClick}
+          >
+            Hot
+          </label>
+        </div>
+        <div className="radio__btn-container">
+          <input
+            className="radio__btns"
+            type="radio"
+            id="radioB"
+            name="weather_temp"
+          />
+          <label
+            htmlFor="radioB"
+            className="radio__btn-label"
+            onChange={radioClick}
+          >
+            Warm
+          </label>
+        </div>
+        <div className="radio__btn-container">
+          <input
+            className="radio__btns"
+            type="radio"
+            id="radioC"
+            name="weather_temp"
+          />
+          <label
+            htmlFor="radioC"
+            className="radio__btn-label"
+            onChange={radioClick}
+          >
+            Cold
+          </label>
+        </div>
       </div>
     </>
   );

@@ -9,12 +9,6 @@ const Header = ({ locationData, openAddClothesModal }) => {
     day: 'numeric',
   });
   const location = locationData;
-  console.log(openAddClothesModal, 'Add Clothes button clicked');
-
-  /*  const addClothesButton = document.querySelector(
-    '.header__add-clothes-button'
-  ); */
-  // addClothesButton.addEventListener('click', openModal);
 
   return (
     <header className="header">

@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import './App.css';
 import '../ModalWithForm/ModalWithForm.css';
 import '../ItemModal/ItemModal.css';
 import Header from '../Header/Header';
-import WeatherCard from '../WeatherCard/WeatherCard';
-import ItemCard from '../ItemCard/ItemCard';
+import Main from '../Main/Main';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import Footer from '../Footer/Footer';
 import AddClothes from '../AddClothes/AddClothes';
@@ -14,17 +13,16 @@ import { getWeather } from '../../utils/WeatherApi';
 import { responseEx } from '../../utils/constants';
 
 function App() {
-  getWeather().then((data) => {
-    console.log(data);
-  });
+  // getWeather().then((data) => {
+  //   console.log(data);
+  // });
 
-  const weatherTempFromCode = responseEx['main']['temp'] + '°F';
+  const weatherTempFromCode = responseEx['main']['temp'];
   const weatherType = responseEx['weather'][0].main;
   const location = responseEx.name;
 
-  const [modalOpened, setModalOpened] = React.useState('');
-  const [selectedCard, setSelectedCard] = React.useState({});
-  const [radioButton, setRadioButton] = React.useState('');
+  const [modalOpened, setModalOpened] = useState('');
+  const [selectedCard, setSelectedCard] = useState({});
 
   /* Radio Button click functions */
 
@@ -62,33 +60,20 @@ function App() {
   };
 
   /* Item Card Image Modal functions */
-
-  const handleCloseItemModal = (e) => {
-    if (e.target === e.currentTarget) {
-      setModalOpened('');
-    }
-  };
-  const handleOpenItemModal = (e) => {
-    console.log(e.target);
+  const handleSelectedCard = (card) => {
     setModalOpened('open');
-    // setSelectedCard(card);
-    console.log('item card image open');
+    setSelectedCard(card);
   };
   //////////////////////////////////////////////
   return (
     <>
       <div className="App">
         <Header locationData={location} openAddClothesModal={handleOpenModal} />
-        <WeatherCard
-          day={true}
-          type={weatherType}
+        <Main
           weatherTemp={weatherTempFromCode}
+          weatherType={weatherType}
+          onSelectCard={handleSelectedCard}
         />
-        <ItemCard
-          temp={weatherTempFromCode}
-          openItemCardModal={handleOpenItemModal}
-        />
-        {/* <Main /> */}
         <Footer />
         {modalOpened === 'modal__opened' && (
           <ModalWithForm
@@ -101,8 +86,9 @@ function App() {
             <AddClothes radioClick={radioButtonClicked} />
           </ModalWithForm>
         )}
+
         {modalOpened === 'open' && (
-          <ItemModal onClose={handleCloseItemModal} cardImage={selectedCard} />
+          <ItemModal onClose={handleCloseModal} selectedCard={selectedCard} />
         )}
       </div>
     </>

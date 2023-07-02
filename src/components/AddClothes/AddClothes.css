@@ -28,22 +28,26 @@
   margin: 0 0 12px 0;
 }
 
-.modal__radio-buttons {
+.radio__btn-container {
+  margin-bottom: 8px;
+}
+
+.radio__btn-container:last-child {
+  margin-bottom: 0;
+}
+
+.radio__btn-label {
   font-family: 'Familjen Grotesk', sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
-  /* color: rgba(0, 0, 0, 0.5); */
-  color: #000;
+  color: rgba(0, 0, 0, 0.5);
+  /* color: #000; */
   margin-bottom: 8px;
   margin-right: 80%;
 }
 
-.modal__radio-buttons:last-child {
-  margin: 0;
-}
-
-.modal__radio-buttons-enabled {
+input:checked + label {
   color: #000;
 }
