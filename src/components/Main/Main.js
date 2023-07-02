@@ -29,8 +29,9 @@ function Main({ weatherTemp, weatherType, onSelectCard }) {
       </div>
       <section className="clothing">
         {filterCards.map((data) => {
-          console.log(data);
-          <ItemCard data={data} onSelectCard={onSelectCard} />;
+          return (
+            <ItemCard key={data._id} data={data} onSelectCard={onSelectCard} />
+          );
         })}
       </section>
     </main>

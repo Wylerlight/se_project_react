@@ -13,16 +13,34 @@ import { getWeather } from '../../utils/WeatherApi';
 import { responseEx } from '../../utils/constants';
 
 function App() {
-  // getWeather().then((data) => {
-  //   console.log(data);
-  // });
-
-  const weatherTempFromCode = responseEx['main']['temp'];
-  const weatherType = responseEx['weather'][0].main;
-  const location = responseEx.name;
-
   const [modalOpened, setModalOpened] = useState('');
   const [selectedCard, setSelectedCard] = useState({});
+  const [location, setLocation] = useState('');
+  const [temp, setTemp] = useState(0);
+  const [weathType, setWeathType] = useState('');
+
+  console.log(location);
+  console.log(temp);
+  console.log(weathType);
+
+  useEffect(() => {
+    getWeather().then((data) => {
+      console.log(data);
+      console.log(data.main.temp);
+      console.log(data.name);
+      console.log(data.weather[0].main);
+      const weatherTemperature = data.main.temp;
+      setTemp(weatherTemperature);
+      const locationName = data.name;
+      setLocation(locationName);
+      const weatherType = data.weather[0].main;
+      setWeathType(weatherType);
+    });
+  });
+
+  // const weatherTempFromCode = responseEx['main']['temp'];
+  // const weatherType = responseEx['weather'][0].main;
+  // const location = responseEx.name;
 
   /* Radio Button click functions */
 
@@ -70,8 +88,8 @@ function App() {
       <div className="App">
         <Header locationData={location} openAddClothesModal={handleOpenModal} />
         <Main
-          weatherTemp={weatherTempFromCode}
-          weatherType={weatherType}
+          weatherTemp={temp}
+          weatherType={weathType}
           onSelectCard={handleSelectedCard}
         />
         <Footer />

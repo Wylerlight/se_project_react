@@ -1,11 +1,10 @@
 import './ItemCard.css';
 
-const ItemCard = ({ data, onSelectCard }) => {
+const ItemCard = ({ result, data, onSelectCard }) => {
   console.log(data);
   return (
-    <ul className="clothing__cards-wrapper">
+    <ul key={result} className="clothing__cards-wrapper">
       <li
-        key={data._id}
         className="clothing__card-items"
         id={`clothing__card-items_${data.name}`}
       >

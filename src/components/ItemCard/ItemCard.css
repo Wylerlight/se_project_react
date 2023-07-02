@@ -1,23 +1,25 @@
 .clothing {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 19px;
 }
 
 .clothing__cards-wrapper {
   list-style: none;
-  display: flex;
-  flex-wrap: wrap;
   justify-content: space-around;
   margin: 0;
   padding: 0;
-  gap: 11px;
+  width: 328px;
+  border-radius: 5%;
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .clothing__card-items {
   display: flex;
   justify-content: center;
   max-height: 328px;
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  border-radius: 5%;
 }
 
 .clothing-card-title {
@@ -49,6 +51,7 @@
   width: 328px;
   height: 328px;
   background-color: #e9e9e9;
+  border-radius: 5%;
 }
 
 #clothing-card-individual_Sneakers {
