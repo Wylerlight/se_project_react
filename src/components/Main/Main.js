@@ -4,7 +4,6 @@ import ItemCard from '../ItemCard/ItemCard';
 import { defaultClothingItems } from '../../utils/constants';
 
 function Main({ weatherTemp, weatherType, onSelectCard, timeOfDay }) {
-  console.log(timeOfDay);
   const weatherFilter = () => {
     if (weatherTemp >= 86) {
       return 'hot';

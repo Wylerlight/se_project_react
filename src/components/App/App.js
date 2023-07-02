@@ -21,11 +21,9 @@ function App() {
   const [sunset, setSunset] = useState();
 
   const dateNow = Date.now() * 0.001;
-  console.log(dateNow);
 
   useEffect(() => {
     getWeather().then((data) => {
-      console.log(data);
       const weatherTemperature = data.main.temp;
       setTemp(weatherTemperature);
       const locationName = data.name;
