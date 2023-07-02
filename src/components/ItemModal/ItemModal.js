@@ -1,7 +1,6 @@
 import './ItemModal.css';
 
 const ItemModal = ({ onClose, selectedCard }) => {
-  console.log(selectedCard);
   return (
     <section className="modal item__modal" onClick={onClose}>
       <div className="modal__container item__modal-container">

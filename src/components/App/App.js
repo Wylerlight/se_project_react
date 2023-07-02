@@ -10,7 +10,6 @@ import Footer from '../Footer/Footer';
 import AddClothes from '../AddClothes/AddClothes';
 import ItemModal from '../ItemModal/ItemModal';
 import { getWeather } from '../../utils/WeatherApi';
-import { responseEx } from '../../utils/constants';
 
 function App() {
   const [modalOpened, setModalOpened] = useState('');
@@ -19,34 +18,20 @@ function App() {
   const [temp, setTemp] = useState(0);
   const [weathType, setWeathType] = useState('');
 
-  console.log(location);
-  console.log(temp);
-  console.log(weathType);
+  const dateNow = Date.now();
+  console.log(dateNow * 0.001);
 
   useEffect(() => {
     getWeather().then((data) => {
       console.log(data);
-      console.log(data.main.temp);
-      console.log(data.name);
-      console.log(data.weather[0].main);
       const weatherTemperature = data.main.temp;
       setTemp(weatherTemperature);
       const locationName = data.name;
       setLocation(locationName);
       const weatherType = data.weather[0].main;
-      setWeathType(weatherType);
+      setWeathType(weatherType.toLowerCase());
     });
   });
-
-  // const weatherTempFromCode = responseEx['main']['temp'];
-  // const weatherType = responseEx['weather'][0].main;
-  // const location = responseEx.name;
-
-  /* Radio Button click functions */
-
-  const radioButtonClicked = (e) => {
-    console.log(e.currentTarget);
-  };
 
   /* Modal functions */
   useEffect(() => {
@@ -74,7 +59,6 @@ function App() {
 
   const handleOpenModal = () => {
     setModalOpened('modal__opened');
-    console.log('open modal pressed');
   };
 
   /* Item Card Image Modal functions */
@@ -101,7 +85,7 @@ function App() {
             onClose={handleCloseModal}
             handleSubmitForm={handleSubmit}
           >
-            <AddClothes radioClick={radioButtonClicked} />
+            <AddClothes />
           </ModalWithForm>
         )}
 

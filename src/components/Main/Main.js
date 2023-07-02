@@ -30,7 +30,11 @@ function Main({ weatherTemp, weatherType, onSelectCard }) {
       <section className="clothing">
         {filterCards.map((data) => {
           return (
-            <ItemCard key={data._id} data={data} onSelectCard={onSelectCard} />
+            <ItemCard
+              result={data._id}
+              data={data}
+              onSelectCard={onSelectCard}
+            />
           );
         })}
       </section>

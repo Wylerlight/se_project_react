@@ -1,7 +1,6 @@
 import './ItemCard.css';
 
 const ItemCard = ({ result, data, onSelectCard }) => {
-  console.log(data);
   return (
     <ul key={result} className="clothing__cards-wrapper">
       <li
