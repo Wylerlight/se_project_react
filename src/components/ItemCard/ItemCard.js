@@ -1,8 +1,8 @@
 import './ItemCard.css';
 
-const ItemCard = ({ result, data, onSelectCard }) => {
+const ItemCard = ({ data, onSelectCard }) => {
   return (
-    <ul key={result} className="clothing__cards-wrapper">
+    <ul className="clothing__cards-wrapper">
       <li
         className="clothing__card-items"
         id={`clothing__card-items_${data.name}`}

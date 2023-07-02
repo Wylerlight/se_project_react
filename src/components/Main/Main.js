@@ -3,7 +3,8 @@ import WeatherCard from '../WeatherCard/WeatherCard';
 import ItemCard from '../ItemCard/ItemCard';
 import { defaultClothingItems } from '../../utils/constants';
 
-function Main({ weatherTemp, weatherType, onSelectCard }) {
+function Main({ weatherTemp, weatherType, onSelectCard, timeOfDay }) {
+  console.log(timeOfDay);
   const weatherFilter = () => {
     if (weatherTemp >= 86) {
       return 'hot';
@@ -20,7 +21,7 @@ function Main({ weatherTemp, weatherType, onSelectCard }) {
   return (
     <main className="main">
       <WeatherCard
-        day={true}
+        day={timeOfDay}
         weatherType={weatherType}
         weatherTemp={weatherTemp}
       />
@@ -30,11 +31,7 @@ function Main({ weatherTemp, weatherType, onSelectCard }) {
       <section className="clothing">
         {filterCards.map((data) => {
           return (
-            <ItemCard
-              result={data._id}
-              data={data}
-              onSelectCard={onSelectCard}
-            />
+            <ItemCard key={data._id} data={data} onSelectCard={onSelectCard} />
           );
         })}
       </section>

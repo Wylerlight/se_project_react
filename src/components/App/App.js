@@ -17,9 +17,11 @@ function App() {
   const [location, setLocation] = useState('');
   const [temp, setTemp] = useState(0);
   const [weathType, setWeathType] = useState('');
+  const [sunrise, setSunrise] = useState();
+  const [sunset, setSunset] = useState();
 
-  const dateNow = Date.now();
-  console.log(dateNow * 0.001);
+  const dateNow = Date.now() * 0.001;
+  console.log(dateNow);
 
   useEffect(() => {
     getWeather().then((data) => {
@@ -30,9 +32,20 @@ function App() {
       setLocation(locationName);
       const weatherType = data.weather[0].main;
       setWeathType(weatherType.toLowerCase());
+      const sunriseData = data.sys.sunrise;
+      setSunrise(sunriseData);
+      const sunsetData = data.sys.sunset;
+      setSunset(sunsetData);
     });
   });
 
+  const timeOfDay = () => {
+    if (dateNow >= sunrise && dateNow < sunset) {
+      return true;
+    } else {
+      return false;
+    }
+  };
   /* Modal functions */
   useEffect(() => {
     const handleEscClose = (evt) => {
@@ -75,6 +88,7 @@ function App() {
           weatherTemp={temp}
           weatherType={weathType}
           onSelectCard={handleSelectedCard}
+          timeOfDay={timeOfDay()}
         />
         <Footer />
         {modalOpened === 'modal__opened' && (
