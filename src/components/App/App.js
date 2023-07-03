@@ -9,7 +9,7 @@ import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import Footer from '../Footer/Footer';
 import AddClothes from '../AddClothes/AddClothes';
 import ItemModal from '../ItemModal/ItemModal';
-import { getWeather } from '../../utils/WeatherApi';
+import { getWeather } from '../../utils/weatherApi';
 
 function App() {
   const [modalOpened, setModalOpened] = useState('');
