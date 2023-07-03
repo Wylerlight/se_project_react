@@ -23,19 +23,23 @@ function App() {
   const dateNow = Date.now() * 0.001;
 
   useEffect(() => {
-    getWeather().then((data) => {
-      const weatherTemperature = data.main.temp;
-      setTemp(weatherTemperature);
-      const locationName = data.name;
-      setLocation(locationName);
-      const weatherType = data.weather[0].main;
-      setWeathType(weatherType.toLowerCase());
-      const sunriseData = data.sys.sunrise;
-      setSunrise(sunriseData);
-      const sunsetData = data.sys.sunset;
-      setSunset(sunsetData);
-    });
-  });
+    getWeather()
+      .then((data) => {
+        const weatherTemperature = data.main.temp;
+        setTemp(weatherTemperature);
+        const locationName = data.name;
+        setLocation(locationName);
+        const weatherType = data.weather[0].main;
+        setWeathType(weatherType.toLowerCase());
+        const sunriseData = data.sys.sunrise;
+        setSunrise(sunriseData);
+        const sunsetData = data.sys.sunset;
+        setSunset(sunsetData);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const timeOfDay = () => {
     if (dateNow >= sunrise && dateNow < sunset) {
@@ -69,7 +73,7 @@ function App() {
   };
 
   const handleOpenModal = () => {
-    setModalOpened('modal__opened');
+    setModalOpened('new-clothes-modal');
   };
 
   /* Item Card Image Modal functions */
@@ -89,7 +93,7 @@ function App() {
           timeOfDay={timeOfDay()}
         />
         <Footer />
-        {modalOpened === 'modal__opened' && (
+        {modalOpened === 'new-clothes-modal' && (
           <ModalWithForm
             title="New clothes"
             name="clothes"

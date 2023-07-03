@@ -3,6 +3,9 @@
   src: url(../../../public/fonts/FamiljenGrotesk-Regular.ttf);
 }
 
+/* Note for reviewer: the font styles shown on the Figma design are not available via Google fonts. The admins/tutors told us to use this font style in its place */
+/* Note for reviewer: There were 2 variations of the this card modal that was made available to use per the Figma design. This layout was one of the options. */
+
 .item__modal-container {
   display: flex;
   justify-content: flex-start;
