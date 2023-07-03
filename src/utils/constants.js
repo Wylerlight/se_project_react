@@ -42,67 +42,67 @@ export const defaultClothingItems = [
 
 export const weatherOptions = [
   {
-    url: require('../components/images/DaySunny.svg').default,
+    url: require('../images/DaySunny.svg').default,
     day: true,
     type: 'sunny',
   },
   {
-    url: require('../components/images/DaySunny.svg').default,
+    url: require('../images/DaySunny.svg').default,
     day: true,
     type: 'clear',
   },
   {
-    url: require('../components/images/DayStorm.svg').default,
+    url: require('../images/DayStorm.svg').default,
     day: true,
     type: 'storm',
   },
   {
-    url: require('../components/images/DaySnow.svg').default,
+    url: require('../images/DaySnow.svg').default,
     day: true,
     type: 'snow',
   },
   {
-    url: require('../components/images/DayRain.svg').default,
+    url: require('../images/DayRain.svg').default,
     day: true,
     type: 'rain',
   },
   {
-    url: require('../components/images/DayFog.svg').default,
+    url: require('../images/DayFog.svg').default,
     day: true,
     type: 'fog',
   },
   {
-    url: require('../components/images/DayCloudy.svg').default,
+    url: require('../images/DayCloudy.svg').default,
     day: true,
     type: 'clouds',
   },
   {
-    url: require('../components/images/NightSunny.svg').default,
+    url: require('../images/NightSunny.svg').default,
     day: false,
     type: 'clear',
   },
   {
-    url: require('../components/images/NightStorm.svg').default,
+    url: require('../images/NightStorm.svg').default,
     day: false,
     type: 'storm',
   },
   {
-    url: require('../components/images/NightSnow.svg').default,
+    url: require('../images/NightSnow.svg').default,
     day: false,
     type: 'snow',
   },
   {
-    url: require('../components/images/NightRain.svg').default,
+    url: require('../images/NightRain.svg').default,
     day: false,
     type: 'rain',
   },
   {
-    url: require('../components/images/NightFog.svg').default,
+    url: require('../images/NightFog.svg').default,
     day: false,
     type: 'fog',
   },
   {
-    url: require('../components/images/NightCloudy.svg').default,
+    url: require('../images/NightCloudy.svg').default,
     day: false,
     type: 'clouds',
   },

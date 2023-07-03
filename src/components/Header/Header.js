@@ -1,6 +1,6 @@
 import React from 'react';
 import logo from '../../Logo.svg';
-import avatar from '../images/AvatarPicture.png';
+import avatar from '../../images/AvatarPicture.png';
 import './Header.css';
 
 const Header = ({ locationData, openAddClothesModal }) => {

@@ -28,7 +28,7 @@
 }
 
 .modal__exit {
-  background-image: url(../images/modalexit.svg);
+  background-image: url(../../images/modalexit.svg);
   position: absolute;
   top: 20px;
   right: 28px;
