@@ -9,24 +9,37 @@ import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import Footer from '../Footer/Footer';
 import AddClothes from '../AddClothes/AddClothes';
 import ItemModal from '../ItemModal/ItemModal';
+import AddItemModal from '../AddItemModal/AddItemModal';
 import { getWeather } from '../../utils/weatherApi';
+import { CurrentTemperatureUnitContext } from '../../contexts/CurrentTemperatureUnitContext';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Profile from '../../profile/Profile';
 
 function App() {
   const [modalOpened, setModalOpened] = useState('');
   const [selectedCard, setSelectedCard] = useState({});
   const [location, setLocation] = useState('');
-  const [temp, setTemp] = useState(0);
+  const [temp, setTemp] = useState({});
+
   const [weathType, setWeathType] = useState('');
   const [sunrise, setSunrise] = useState();
   const [sunset, setSunset] = useState();
 
   const dateNow = Date.now() * 0.001;
 
+  const [currentTempUnit, setCurrentTempUnit] = useState('F');
+
   useEffect(() => {
     getWeather()
       .then((data) => {
-        const weatherTemperature = data.main.temp;
-        setTemp(weatherTemperature);
+        console.log(data);
+        const weather = {
+          temperature: {
+            F: Math.round(data.main.temp),
+            C: Math.round(((data.main.temp - 32) * 5) / 9),
+          },
+        };
+        setTemp(weather);
         const locationName = data.name;
         setLocation(locationName);
         const weatherType = data.weather[0].main;
@@ -82,34 +95,60 @@ function App() {
     setSelectedCard(card);
   };
   //////////////////////////////////////////////
-  return (
-    <>
-      <div className="App">
-        <Header locationData={location} openAddClothesModal={handleOpenModal} />
-        <Main
-          weatherTemp={temp}
-          weatherType={weathType}
-          onSelectCard={handleSelectedCard}
-          timeOfDay={timeOfDay()}
-        />
-        <Footer />
-        {modalOpened === 'new-clothes-modal' && (
-          <ModalWithForm
-            title="New clothes"
-            name="clothes"
-            buttonText="Add clothes"
-            onClose={handleCloseModal}
-            handleSubmitForm={handleSubmit}
-          >
-            <AddClothes />
-          </ModalWithForm>
-        )}
 
-        {modalOpened === 'open' && (
-          <ItemModal onClose={handleCloseModal} selectedCard={selectedCard} />
-        )}
-      </div>
-    </>
+  const handleToggleChange = () => {
+    currentTempUnit === 'F' ? setCurrentTempUnit('C') : setCurrentTempUnit('F');
+  };
+
+  return (
+    <BrowserRouter>
+      <>
+        <div className="page">
+          <CurrentTemperatureUnitContext.Provider
+            value={{ currentTempUnit, handleToggleChange }}
+          >
+            <div className="App">
+              <Header
+                locationData={location}
+                openAddClothesModal={handleOpenModal}
+              />
+              <Switch>
+                <Route exact path="/">
+                  <Main
+                    weatherTemp={temp}
+                    weatherType={weathType}
+                    onSelectCard={handleSelectedCard}
+                    timeOfDay={timeOfDay()}
+                  />
+                </Route>
+                <Route path="/profile">
+                  <Profile onSelectCard={handleSelectedCard} />
+                </Route>
+              </Switch>
+              <Footer />
+              {modalOpened === 'new-clothes-modal' && (
+                <ModalWithForm
+                  title="New clothes"
+                  name="clothes"
+                  buttonText="Add clothes"
+                  onClose={handleCloseModal}
+                  handleSubmitForm={handleSubmit}
+                >
+                  <AddClothes />
+                </ModalWithForm>
+              )}
+
+              {modalOpened === 'open' && (
+                <ItemModal
+                  onClose={handleCloseModal}
+                  selectedCard={selectedCard}
+                />
+              )}
+            </div>
+          </CurrentTemperatureUnitContext.Provider>
+        </div>
+      </>
+    </BrowserRouter>
   );
 }
 
