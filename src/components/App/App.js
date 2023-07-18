@@ -14,6 +14,7 @@ import { getWeather } from '../../utils/weatherApi';
 import { CurrentTemperatureUnitContext } from '../../contexts/CurrentTemperatureUnitContext';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Profile from '../../profile/Profile';
+import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
 
 function App() {
   const [modalOpened, setModalOpened] = useState('');
@@ -32,7 +33,6 @@ function App() {
   useEffect(() => {
     getWeather()
       .then((data) => {
-        console.log(data);
         const weather = {
           temperature: {
             F: Math.round(data.main.temp),
@@ -75,10 +75,6 @@ function App() {
     };
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
   const handleCloseModal = (e) => {
     if (e.target === e.currentTarget) {
       setModalOpened('');
@@ -87,6 +83,10 @@ function App() {
 
   const handleOpenModal = () => {
     setModalOpened('new-clothes-modal');
+  };
+
+  const handleOpenConfirmationModal = () => {
+    setModalOpened('confirmation-opened');
   };
 
   /* Item Card Image Modal functions */
@@ -98,6 +98,15 @@ function App() {
 
   const handleToggleChange = () => {
     currentTempUnit === 'F' ? setCurrentTempUnit('C') : setCurrentTempUnit('F');
+  };
+
+  // Delete Card
+  const handleDeleteCard = (cardElement) => {
+    console.log(cardElement);
+  };
+
+  const onAddItem = (values) => {
+    console.log(values);
   };
 
   return (
@@ -122,26 +131,34 @@ function App() {
                   />
                 </Route>
                 <Route path="/profile">
-                  <Profile onSelectCard={handleSelectedCard} />
+                  <Profile
+                    onSelectCard={handleSelectedCard}
+                    openAddClothesModal={handleOpenModal}
+                  />
                 </Route>
               </Switch>
               <Footer />
-              {modalOpened === 'new-clothes-modal' && (
-                <ModalWithForm
-                  title="New clothes"
-                  name="clothes"
-                  buttonText="Add clothes"
-                  onClose={handleCloseModal}
-                  handleSubmitForm={handleSubmit}
-                >
-                  <AddClothes />
-                </ModalWithForm>
-              )}
 
               {modalOpened === 'open' && (
                 <ItemModal
                   onClose={handleCloseModal}
                   selectedCard={selectedCard}
+                  handleOpenConfirm={handleOpenConfirmationModal}
+                />
+              )}
+
+              {modalOpened === 'confirmation-opened' && (
+                <DeleteConfirmationModal
+                  onClose={handleCloseModal}
+                  card={selectedCard}
+                  handleDeleteCard={handleDeleteCard}
+                />
+              )}
+              {modalOpened === 'new-clothes-modal' && (
+                <AddItemModal
+                  isOpen={modalOpened === 'new-clothes-modal'}
+                  onAddItem={onAddItem}
+                  onCloseModal={handleCloseModal}
                 />
               )}
             </div>

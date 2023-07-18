@@ -1,14 +1,102 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
+import './AddItemModal.css';
 
 const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
-  function hadndleSubmit(e) {
-    e.preventDefault();
-  }
+  const [name, setName] = useState('');
+  const [link, setLink] = useState('');
+  const handleNameChange = (e) => {
+    console.log(e.target.value);
+    setName(e.target.value);
+  };
+  const handleImageChange = (e) => {
+    console.log(e.target.value);
+    setLink(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    // e.preventDefault();
+    // onAddItem({ name, link });
+    console.log(e);
+  };
 
   return (
-    <ModalWithForm>
-      {/* the contents of the form will go in here */}
+    <ModalWithForm
+      title="New clothes"
+      name="clothes"
+      buttonText="Add clothes"
+      onClose={onCloseModal}
+      onSubmit={handleSubmit}
+      isOpen={isOpen}
+    >
+      <div className="modal__input">
+        Name
+        <input
+          id="modal__input-name"
+          className="modal__input-form"
+          name="name"
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={handleNameChange}
+          //   required
+        />
+      </div>
+      <span className=""></span>
+      {/* Image URL Input */}
+      <div className="modal__input">
+        Image
+        <input
+          id="modal__input-url"
+          className="modal__input-form"
+          name="link"
+          type="url"
+          placeholder="Image URL"
+          value={link}
+          onChange={handleImageChange}
+          //   required
+        />
+      </div>
+      <span className=""></span>
+      {/* Select weather and radio inputs */}
+      <p className="modal__radio-title">Select weather type:</p>
+      <div className="modal__radio-container">
+        {/* pass in labels as props, map over them to addd radio labels */}
+
+        <div className="radio__btn-container">
+          <input
+            className="radio__btns"
+            type="radio"
+            id="radioA"
+            name="weather_temp"
+          />
+          <label htmlFor="radioA" className="radio__btn-label">
+            Hot
+          </label>
+        </div>
+        <div className="radio__btn-container">
+          <input
+            className="radio__btns"
+            type="radio"
+            id="radioB"
+            name="weather_temp"
+          />
+          <label htmlFor="radioB" className="radio__btn-label">
+            Warm
+          </label>
+        </div>
+        <div className="radio__btn-container">
+          <input
+            className="radio__btns"
+            type="radio"
+            id="radioC"
+            name="weather_temp"
+          />
+          <label htmlFor="radioC" className="radio__btn-label">
+            Cold
+          </label>
+        </div>
+      </div>
     </ModalWithForm>
   );
 };

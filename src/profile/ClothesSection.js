@@ -3,12 +3,16 @@ import { defaultClothingItems } from '../utils/constants';
 import ItemCard from '../components/ItemCard/ItemCard';
 import './ClothesSection.css';
 
-const ClothesSection = ({ onSelectCard }) => {
+const ClothesSection = ({ onSelectCard, openAddClothesModal }) => {
   return (
     <div className="clothes__section">
       <div className="clothes__section-title-wrapper">
         <p className="clothes__section-title">Your items</p>
-        <button type="submit" className="clothes__section-button">
+        <button
+          type="submit"
+          className="clothes__section-button"
+          onClick={openAddClothesModal}
+        >
           + Add new
         </button>
       </div>

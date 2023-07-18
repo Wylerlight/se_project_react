@@ -1,3 +1,4 @@
+/*
 .modal__input {
   display: flex;
   flex-direction: column;
@@ -43,7 +44,7 @@
   font-size: 16px;
   line-height: 20px;
   color: rgba(0, 0, 0, 0.5);
-  /* color: #000; */
+  /* color: #000; 
   margin-bottom: 8px;
   margin-right: 80%;
 }
@@ -51,3 +52,4 @@
 input:checked + label {
   color: #000;
 }
+*/
