@@ -5,6 +5,7 @@ import './AddItemModal.css';
 const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
   const [name, setName] = useState('');
   const [link, setLink] = useState('');
+  const [weather, setweather] = useState('');
   const handleNameChange = (e) => {
     console.log(e.target.value);
     setName(e.target.value);
@@ -14,10 +15,13 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
     setLink(e.target.value);
   };
 
+  const handleWeatherChange = (e) => {
+    setweather(e.target.value);
+  };
+
   const handleSubmit = (e) => {
-    // e.preventDefault();
-    // onAddItem({ name, link });
-    console.log(e);
+    e.preventDefault();
+    onAddItem({ name, weather, link });
   };
 
   return (
@@ -39,7 +43,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           placeholder="Name"
           value={name}
           onChange={handleNameChange}
-          //   required
+          required
         />
       </div>
       <span className=""></span>
@@ -54,7 +58,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
           placeholder="Image URL"
           value={link}
           onChange={handleImageChange}
-          //   required
+          required
         />
       </div>
       <span className=""></span>
@@ -69,6 +73,8 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
             type="radio"
             id="radioA"
             name="weather_temp"
+            onChange={handleWeatherChange}
+            value="hot"
           />
           <label htmlFor="radioA" className="radio__btn-label">
             Hot
@@ -80,6 +86,8 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
             type="radio"
             id="radioB"
             name="weather_temp"
+            onChange={handleWeatherChange}
+            value="warm"
           />
           <label htmlFor="radioB" className="radio__btn-label">
             Warm
@@ -91,6 +99,8 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
             type="radio"
             id="radioC"
             name="weather_temp"
+            onChange={handleWeatherChange}
+            value="cold"
           />
           <label htmlFor="radioC" className="radio__btn-label">
             Cold
