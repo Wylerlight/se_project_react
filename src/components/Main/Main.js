@@ -5,7 +5,13 @@ import WeatherCard from '../WeatherCard/WeatherCard';
 import ItemCard from '../ItemCard/ItemCard';
 import { defaultClothingItems } from '../../utils/constants';
 
-function Main({ weatherTemp, weatherType, onSelectCard, timeOfDay }) {
+function Main({
+  weatherTemp,
+  weatherType,
+  onSelectCard,
+  timeOfDay,
+  clothingItems,
+}) {
   const { currentTempUnit } = useContext(CurrentTemperatureUnitContext);
 
   const temp = weatherTemp?.temperature?.[currentTempUnit] || 999;
@@ -27,7 +33,7 @@ function Main({ weatherTemp, weatherType, onSelectCard, timeOfDay }) {
     }
   };
   const weatherTempFilter = weatherFilter();
-  const filterCards = defaultClothingItems.filter((item) => {
+  const filterCards = clothingItems.filter((item) => {
     return item.weather === weatherTempFilter;
   });
   return (

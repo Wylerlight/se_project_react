@@ -68,7 +68,7 @@
 }
 
 .modal__submit {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: #000;
   font-family: 'Familjen Grotesk', sans-serif;
   font-style: normal;
   font-weight: 500;
@@ -83,6 +83,6 @@
   padding: 8px 16px;
 }
 
-.modal__submit-clothes:hover {
+.modal__submit:hover {
   cursor: pointer;
 }

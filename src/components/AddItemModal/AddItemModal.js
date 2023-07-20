@@ -6,6 +6,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
   const [name, setName] = useState('');
   const [link, setLink] = useState('');
   const [weather, setweather] = useState('');
+
   const handleNameChange = (e) => {
     console.log(e.target.value);
     setName(e.target.value);

@@ -105,11 +105,12 @@ function App() {
   // Delete Card
   const handleDeleteCard = (cardElement) => {
     console.log(cardElement);
+    setModalOpened('');
+    setClothingItems([]);
   };
 
   const onAddItem = (values) => {
-    console.log(values);
-    setClothingItems([values, ...defaultClothingItems]);
+    setClothingItems([values, ...clothingItems]);
   };
   return (
     <BrowserRouter>
@@ -130,6 +131,7 @@ function App() {
                     weatherType={weathType}
                     onSelectCard={handleSelectedCard}
                     timeOfDay={timeOfDay()}
+                    clothingItems={clothingItems}
                   />
                 </Route>
                 <Route path="/profile">

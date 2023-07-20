@@ -9,6 +9,7 @@ const ModalWithForm = ({
   onSubmit,
   isOpen,
 }) => {
+  console.log(isOpen);
   return (
     <section className={`modal modal_type_${name}`} onClick={onClose}>
       <div className="modal__container ">
@@ -21,11 +22,7 @@ const ModalWithForm = ({
         <form className="modal__form " id="" onSubmit={onSubmit}>
           <fieldset className="modal__fieldset">{children}</fieldset>
           <span className="modal__error"></span>
-          <button
-            type="submit"
-            className="modal__submit"
-            // disabled
-          >
+          <button type="submit" className="modal__submit">
             {buttonText}
           </button>
         </form>

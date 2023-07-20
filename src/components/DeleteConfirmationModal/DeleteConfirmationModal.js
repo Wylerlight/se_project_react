@@ -2,7 +2,6 @@ import React from 'react';
 import './DeleteConfirmationModal.css';
 
 const DeleteConfirmationModal = ({ onClose, card, handleDeleteCard }) => {
-  console.log(card._id);
   return (
     <section className="modal" onClick={onClose}>
       <div className="delete__confirmation-modal">
@@ -20,8 +19,7 @@ const DeleteConfirmationModal = ({ onClose, card, handleDeleteCard }) => {
             className="delete__confirmation-button_yes"
             type="button"
             onClick={() => {
-              handleDeleteCard(card._id);
-              console.log('delete confirm pressed');
+              handleDeleteCard(card);
             }}
           >
             Yes, delete item
