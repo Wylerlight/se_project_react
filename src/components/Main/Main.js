@@ -48,8 +48,9 @@ function Main({
       </div>
       <section className="clothing">
         {filterCards.map((data) => {
+          // console.log(data);
           return (
-            <ItemCard key={data._id} data={data} onSelectCard={onSelectCard} />
+            <ItemCard key={data.id} data={data} onSelectCard={onSelectCard} />
           );
         })}
       </section>

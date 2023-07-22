@@ -3,7 +3,11 @@ import { defaultClothingItems } from '../utils/constants';
 import ItemCard from '../components/ItemCard/ItemCard';
 import './ClothesSection.css';
 
-const ClothesSection = ({ onSelectCard, openAddClothesModal }) => {
+const ClothesSection = ({
+  onSelectCard,
+  openAddClothesModal,
+  clothingItems,
+}) => {
   return (
     <div className="clothes__section">
       <div className="clothes__section-title-wrapper">
@@ -17,9 +21,9 @@ const ClothesSection = ({ onSelectCard, openAddClothesModal }) => {
         </button>
       </div>
       <div className="clothing__section-cards">
-        {defaultClothingItems.map((data) => {
+        {clothingItems.map((data) => {
           return (
-            <ItemCard key={data._id} data={data} onSelectCard={onSelectCard} />
+            <ItemCard key={data.id} data={data} onSelectCard={onSelectCard} />
           );
         })}
       </div>

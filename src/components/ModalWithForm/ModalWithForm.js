@@ -9,7 +9,6 @@ const ModalWithForm = ({
   onSubmit,
   isOpen,
 }) => {
-  console.log(isOpen);
   return (
     <section className={`modal modal_type_${name}`} onClick={onClose}>
       <div className="modal__container ">

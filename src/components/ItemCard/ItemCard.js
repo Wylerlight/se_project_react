@@ -4,6 +4,7 @@ const ItemCard = ({ data, onSelectCard }) => {
   return (
     <ul className="clothing__cards-wrapper">
       <li
+        key={data.id}
         className="clothing__card-items"
         id={`clothing__card-items_${data.name}`}
       >
@@ -12,7 +13,7 @@ const ItemCard = ({ data, onSelectCard }) => {
           className="clothing-card-individual"
           id={`clothing-card-individual_${data.name}`}
           alt={data.name}
-          src={data.link}
+          src={data.imageUrl}
           onClick={() => onSelectCard(data)}
         />
       </li>

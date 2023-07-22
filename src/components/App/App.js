@@ -5,9 +5,7 @@ import '../ModalWithForm/ModalWithForm.css';
 import '../ItemModal/ItemModal.css';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
-import ModalWithForm from '../ModalWithForm/ModalWithForm';
 import Footer from '../Footer/Footer';
-import AddClothes from '../AddClothes/AddClothes';
 import ItemModal from '../ItemModal/ItemModal';
 import AddItemModal from '../AddItemModal/AddItemModal';
 import { getWeather } from '../../utils/weatherApi';
@@ -16,13 +14,14 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Profile from '../../profile/Profile';
 import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
 import { defaultClothingItems } from '../../utils/constants';
+import { deleteItems, getItems, postItems } from '../../utils/api';
 
 function App() {
   const [modalOpened, setModalOpened] = useState('');
   const [selectedCard, setSelectedCard] = useState({});
   const [location, setLocation] = useState('');
   const [temp, setTemp] = useState({});
-  const [clothingItems, setClothingItems] = useState([]);
+  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
 
   const [weathType, setWeathType] = useState('');
   const [sunrise, setSunrise] = useState();
@@ -31,6 +30,16 @@ function App() {
   const dateNow = Date.now() * 0.001;
 
   const [currentTempUnit, setCurrentTempUnit] = useState('F');
+
+  useEffect(() => {
+    getItems()
+      .then((data) => {
+        setClothingItems(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   useEffect(() => {
     getWeather()
@@ -104,14 +113,22 @@ function App() {
 
   // Delete Card
   const handleDeleteCard = (cardElement) => {
-    console.log(cardElement);
+    deleteItems(cardElement).then(() => {
+      const newClothesList = clothingItems.filter((cards) => {
+        return cards.id !== cardElement;
+      });
+      setClothingItems(newClothesList);
+    });
     setModalOpened('');
-    setClothingItems([]);
   };
 
   const onAddItem = (values) => {
-    setClothingItems([values, ...clothingItems]);
+    postItems(values).then((data) => {
+      setClothingItems([data, ...clothingItems]);
+      setModalOpened('');
+    });
   };
+
   return (
     <BrowserRouter>
       <>
@@ -132,12 +149,14 @@ function App() {
                     onSelectCard={handleSelectedCard}
                     timeOfDay={timeOfDay()}
                     clothingItems={clothingItems}
+                    // key={key}
                   />
                 </Route>
                 <Route path="/profile">
                   <Profile
                     onSelectCard={handleSelectedCard}
                     openAddClothesModal={handleOpenModal}
+                    clothingItems={clothingItems}
                   />
                 </Route>
               </Switch>
