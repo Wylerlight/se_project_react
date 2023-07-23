@@ -1,5 +1,5 @@
 import React from 'react';
-import avatar from '../images/AvatarPicture.png';
+import avatar from '../../images/AvatarPicture.png';
 import './SideBar.css';
 
 const SideBar = () => {

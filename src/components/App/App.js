@@ -11,7 +11,7 @@ import AddItemModal from '../AddItemModal/AddItemModal';
 import { getWeather } from '../../utils/weatherApi';
 import { CurrentTemperatureUnitContext } from '../../contexts/CurrentTemperatureUnitContext';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import Profile from '../../profile/Profile';
+import Profile from '../Profile/Profile';
 import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
 import { deleteItems, getItems, postItems } from '../../utils/api';
 
