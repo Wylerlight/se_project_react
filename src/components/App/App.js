@@ -28,7 +28,7 @@ function App() {
 
   const dateNow = Date.now() * 0.001;
 
-  const [currentTempUnit, setCurrentTempUnit] = useState('F');
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState();
 
   useEffect(() => {
     getItems()
@@ -106,8 +106,10 @@ function App() {
   };
   //////////////////////////////////////////////
 
-  const handleToggleChange = () => {
-    currentTempUnit === 'F' ? setCurrentTempUnit('C') : setCurrentTempUnit('F');
+  const handleToggleSwitchChange = () => {
+    currentTemperatureUnit === 'F'
+      ? setCurrentTemperatureUnit('C')
+      : setCurrentTemperatureUnit('F');
   };
 
   // Delete Card
@@ -133,7 +135,7 @@ function App() {
       <>
         <div className="page">
           <CurrentTemperatureUnitContext.Provider
-            value={{ currentTempUnit, handleToggleChange }}
+            value={{ currentTemperatureUnit, handleToggleSwitchChange }}
           >
             <div className="App">
               <Header
@@ -148,7 +150,6 @@ function App() {
                     onSelectCard={handleSelectedCard}
                     timeOfDay={timeOfDay()}
                     clothingItems={clothingItems}
-                    // key={key}
                   />
                 </Route>
                 <Route path="/profile">
