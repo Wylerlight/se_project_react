@@ -28,7 +28,7 @@ function App() {
 
   const dateNow = Date.now() * 0.001;
 
-  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState();
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
 
   useEffect(() => {
     getItems()

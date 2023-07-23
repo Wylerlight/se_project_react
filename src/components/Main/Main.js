@@ -11,9 +11,9 @@ function Main({
   timeOfDay,
   clothingItems,
 }) {
-  const { currentTempUnit } = useContext(CurrentTemperatureUnitContext);
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
-  const temp = weatherTemp?.temperature?.[currentTempUnit] || 999;
+  const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
   const weatherFilter = () => {
     if (temp >= 30) {
       return 'hot';
@@ -43,7 +43,7 @@ function Main({
         weatherTemp={temp}
       />
       <div className="main__title">
-        Today is {temp}°{currentTempUnit} / You may want to wear:
+        Today is {temp}°{currentTemperatureUnit} / You may want to wear:
       </div>
       <section className="clothing">
         {filterCards.map((data) => {

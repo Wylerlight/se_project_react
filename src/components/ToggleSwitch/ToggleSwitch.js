@@ -3,7 +3,7 @@ import './ToggleSwitch.css';
 import { CurrentTemperatureUnitContext } from '../../contexts/CurrentTemperatureUnitContext';
 
 const ToggleSwitch = () => {
-  const { currentTempUnit, handleToggleChange } = useContext(
+  const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(
     CurrentTemperatureUnitContext
   );
 
@@ -13,26 +13,26 @@ const ToggleSwitch = () => {
         id={`temp-toggle`}
         className="button__toggle"
         type="checkbox"
-        onChange={handleToggleChange}
+        onChange={handleToggleSwitchChange}
       />
       <label htmlFor={`temp-toggle`} className="button__label">
         <p
           className={`button__temp-F ${
-            currentTempUnit === 'F' && 'button__temp-active'
+            currentTemperatureUnit === 'F' && 'button__temp-active'
           }`}
         >
           F
         </p>
         <p
           className={`button__temp-C ${
-            currentTempUnit === 'C' && 'button__temp-active'
+            currentTemperatureUnit === 'C' && 'button__temp-active'
           }`}
         >
           C
         </p>
         <span
           className={
-            currentTempUnit === 'F'
+            currentTemperatureUnit === 'F'
               ? 'button__slide button__slide-F'
               : 'button__slide button__slide-C'
           }
