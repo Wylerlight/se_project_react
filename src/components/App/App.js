@@ -13,7 +13,6 @@ import { CurrentTemperatureUnitContext } from '../../contexts/CurrentTemperature
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Profile from '../../profile/Profile';
 import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
-import { defaultClothingItems } from '../../utils/constants';
 import { deleteItems, getItems, postItems } from '../../utils/api';
 
 function App() {
@@ -21,7 +20,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [location, setLocation] = useState('');
   const [temp, setTemp] = useState({});
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
 
   const [weathType, setWeathType] = useState('');
   const [sunrise, setSunrise] = useState();
