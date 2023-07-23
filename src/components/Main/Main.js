@@ -14,6 +14,7 @@ function Main({
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
+  console.log(temp);
   const weatherFilter = () => {
     if (temp >= 30) {
       return 'hot';
@@ -32,6 +33,7 @@ function Main({
     }
   };
   const weatherTempFilter = weatherFilter();
+  console.log(weatherTempFilter);
   const filterCards = clothingItems.filter((item) => {
     return item.weather === weatherTempFilter;
   });

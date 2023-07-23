@@ -23,12 +23,16 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
 
   const [weathType, setWeathType] = useState('');
-  const [sunrise, setSunrise] = useState();
-  const [sunset, setSunset] = useState();
+  const [sunrise, setSunrise] = useState(null);
+  const [sunset, setSunset] = useState(null);
 
   const dateNow = Date.now() * 0.001;
 
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState('F');
+
+  const closeModal = () => {
+    setModalOpened('');
+  };
 
   useEffect(() => {
     getItems()
@@ -75,7 +79,7 @@ function App() {
   useEffect(() => {
     const handleEscClose = (evt) => {
       if (evt.key === 'Escape') {
-        setModalOpened('');
+        closeModal();
       }
     };
     window.addEventListener('keydown', handleEscClose);
@@ -114,80 +118,86 @@ function App() {
 
   // Delete Card
   const handleDeleteCard = (cardElement) => {
-    deleteItems(cardElement).then(() => {
-      const newClothesList = clothingItems.filter((cards) => {
-        return cards.id !== cardElement;
+    deleteItems(cardElement)
+      .then(() => {
+        const newClothesList = clothingItems.filter((cards) => {
+          return cards.id !== cardElement;
+        });
+        setClothingItems(newClothesList);
+        closeModal();
+      })
+      .catch((err) => {
+        console.log(err);
       });
-      setClothingItems(newClothesList);
-    });
-    setModalOpened('');
   };
 
   const onAddItem = (values) => {
-    postItems(values).then((data) => {
-      setClothingItems([data, ...clothingItems]);
-      setModalOpened('');
-    });
+    postItems(values)
+      .then((data) => {
+        setClothingItems([data, ...clothingItems]);
+        closeModal();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
     <BrowserRouter>
-      <>
-        <div className="page">
-          <CurrentTemperatureUnitContext.Provider
-            value={{ currentTemperatureUnit, handleToggleSwitchChange }}
-          >
-            <div className="App">
-              <Header
-                locationData={location}
-                openAddClothesModal={handleOpenModal}
+      <div className="page">
+        <CurrentTemperatureUnitContext.Provider
+          value={{ currentTemperatureUnit, handleToggleSwitchChange }}
+        >
+          <div className="App">
+            <Header
+              locationData={location}
+              openAddClothesModal={handleOpenModal}
+            />
+            <Switch>
+              <Route exact path="/">
+                <Main
+                  weatherTemp={temp}
+                  weatherType={weathType}
+                  onSelectCard={handleSelectedCard}
+                  timeOfDay={timeOfDay()}
+                  clothingItems={clothingItems}
+                />
+              </Route>
+              <Route path="/profile">
+                <Profile
+                  onSelectCard={handleSelectedCard}
+                  openAddClothesModal={handleOpenModal}
+                  clothingItems={clothingItems}
+                />
+              </Route>
+            </Switch>
+            <Footer />
+
+            {modalOpened === 'open' && (
+              <ItemModal
+                onClose={handleCloseModal}
+                selectedCard={selectedCard}
+                handleOpenConfirm={handleOpenConfirmationModal}
               />
-              <Switch>
-                <Route exact path="/">
-                  <Main
-                    weatherTemp={temp}
-                    weatherType={weathType}
-                    onSelectCard={handleSelectedCard}
-                    timeOfDay={timeOfDay()}
-                    clothingItems={clothingItems}
-                  />
-                </Route>
-                <Route path="/profile">
-                  <Profile
-                    onSelectCard={handleSelectedCard}
-                    openAddClothesModal={handleOpenModal}
-                    clothingItems={clothingItems}
-                  />
-                </Route>
-              </Switch>
-              <Footer />
+            )}
 
-              {modalOpened === 'open' && (
-                <ItemModal
-                  onClose={handleCloseModal}
-                  selectedCard={selectedCard}
-                  handleOpenConfirm={handleOpenConfirmationModal}
-                />
-              )}
-
-              {modalOpened === 'confirmation-opened' && (
-                <DeleteConfirmationModal
-                  onClose={handleCloseModal}
-                  card={selectedCard}
-                  handleDeleteCard={handleDeleteCard}
-                />
-              )}
-              {modalOpened === 'new-clothes-modal' && (
-                <AddItemModal
-                  isOpen={modalOpened === 'new-clothes-modal'}
-                  onAddItem={onAddItem}
-                  onCloseModal={handleCloseModal}
-                />
-              )}
-            </div>
-          </CurrentTemperatureUnitContext.Provider>
-        </div>
-      </>
+            {modalOpened === 'confirmation-opened' && (
+              <DeleteConfirmationModal
+                onClose={handleCloseModal}
+                card={selectedCard}
+                handleDeleteCard={handleDeleteCard}
+              />
+            )}
+            {modalOpened === 'new-clothes-modal' && (
+              <AddItemModal
+                isOpen={modalOpened === 'new-clothes-modal'}
+                onAddItem={onAddItem}
+                onCloseModal={handleCloseModal}
+              />
+            )}
+          </div>
+        </CurrentTemperatureUnitContext.Provider>
+      </div>
     </BrowserRouter>
   );
 }
