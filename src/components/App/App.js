@@ -14,6 +14,11 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Profile from '../Profile/Profile';
 import DeleteConfirmationModal from '../DeleteConfirmationModal/DeleteConfirmationModal';
 import { deleteItems, getItems, postItems } from '../../utils/api';
+import RegisterModal from '../RegisterModal/RegisterModal';
+import LoginModal from '../LoginModal/LoginModal';
+
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import { signin, signup } from '../../utils/auth';
 
 function App() {
   const [modalOpened, setModalOpened] = useState('');
@@ -103,6 +108,20 @@ function App() {
     setModalOpened('confirmation-opened');
   };
 
+  const handleModalUser = (elementName) => {
+    setModalOpened(elementName);
+  };
+
+  const handleRedirect = (e) => {
+    if (e.target === e.currentTarget) {
+      if (modalOpened === 'register-modal-opened') {
+        setModalOpened('login-modal-opened');
+      } else if (modalOpened === 'login-modal-opened') {
+        setModalOpened('register-modal-opened');
+      }
+    }
+  };
+
   /* Item Card Image Modal functions */
   const handleSelectedCard = (card) => {
     setModalOpened('open');
@@ -142,6 +161,31 @@ function App() {
       });
   };
 
+  // Form Validator
+  const [validate, setValidate] = useState('');
+
+  const handleValidation = (e) => {
+    console.log(e.target.value);
+  };
+
+  // Sending user info to Database
+
+  const userRegister = (values) => {
+    console.log(values);
+    // closeModal();
+
+    signup(values)
+      .then((res) => {
+        console.log(res);
+      })
+      .then(() => {
+        closeModal();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   return (
     <BrowserRouter>
       <div className="page">
@@ -149,10 +193,7 @@ function App() {
           value={{ currentTemperatureUnit, handleToggleSwitchChange }}
         >
           <div className="App">
-            <Header
-              locationData={location}
-              openAddClothesModal={handleOpenModal}
-            />
+            <Header locationData={location} openModal={handleModalUser} />
             <Switch>
               <Route exact path="/">
                 <Main
@@ -163,13 +204,15 @@ function App() {
                   clothingItems={clothingItems}
                 />
               </Route>
-              <Route path="/profile">
-                <Profile
-                  onSelectCard={handleSelectedCard}
-                  openAddClothesModal={handleOpenModal}
-                  clothingItems={clothingItems}
-                />
-              </Route>
+              <ProtectedRoute path="/profile">
+                <Route path="/profile">
+                  <Profile
+                    onSelectCard={handleSelectedCard}
+                    openAddClothesModal={handleOpenModal}
+                    clothingItems={clothingItems}
+                  />
+                </Route>
+              </ProtectedRoute>
             </Switch>
             <Footer />
 
@@ -193,6 +236,22 @@ function App() {
                 isOpen={modalOpened === 'new-clothes-modal'}
                 onAddItem={onAddItem}
                 onCloseModal={handleCloseModal}
+              />
+            )}
+
+            {modalOpened === 'register-modal-opened' && (
+              <RegisterModal
+                isOpen={modalOpened === 'register-modal-opened'}
+                onCloseModal={handleCloseModal}
+                onRedirect={handleRedirect}
+                userRegister={userRegister}
+              />
+            )}
+            {modalOpened === 'login-modal-opened' && (
+              <LoginModal
+                isOpen={modalOpened === 'login-modal-opened'}
+                onCloseModal={handleCloseModal}
+                onRedirect={handleRedirect}
               />
             )}
           </div>

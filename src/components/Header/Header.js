@@ -5,7 +5,7 @@ import './Header.css';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
 import { Link } from 'react-router-dom';
 
-const Header = ({ locationData, openAddClothesModal }) => {
+const Header = ({ locationData, openModal }) => {
   const currentDate = new Date().toLocaleString('default', {
     month: 'long',
     day: 'numeric',
@@ -24,6 +24,7 @@ const Header = ({ locationData, openAddClothesModal }) => {
       </section>
       <section className="header__section header__section-right">
         <ToggleSwitch />
+        {/* 
         <button
           className="header__add-clothes-button"
           type="button"
@@ -31,10 +32,26 @@ const Header = ({ locationData, openAddClothesModal }) => {
         >
           Add Clothes
         </button>
-        <p className="avatar__name">Tyler Tellez</p>
+         */}
+        <button
+          className="header avatar__sign-up"
+          type="button"
+          onClick={() => openModal('register-modal-opened')}
+        >
+          Sign Up
+        </button>
+        <button
+          className="header avatar__log-in"
+          type="button"
+          onClick={() => openModal('login-modal-opened')}
+        >
+          Log In
+        </button>
+        {/* <p className="avatar__name">Tyler Tellez</p> */}
+        {/* 
         <Link to="/profile">
           <img alt="avatar" src={avatar} className="avatar__picture" />
-        </Link>
+        </Link> */}
       </section>
     </header>
   );

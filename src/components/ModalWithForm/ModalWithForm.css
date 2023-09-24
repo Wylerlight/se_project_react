@@ -86,3 +86,11 @@
 .modal__submit:hover {
   cursor: pointer;
 }
+
+.modal__redirect {
+  width: 100px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}

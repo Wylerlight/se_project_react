@@ -58,3 +58,13 @@
 
   background-color: #000;
 }
+
+.avatar__sign-up {
+  border-style: none;
+  cursor: pointer;
+}
+
+.avatar__log-in {
+  border-style: none;
+  cursor: pointer;
+}

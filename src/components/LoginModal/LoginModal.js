@@ -1,0 +1,59 @@
+import React, { useState } from 'react';
+import ModalWithForm from '../ModalWithForm/ModalWithForm';
+
+const LoginModal = ({ isOpen, onCloseModal, onRedirect }) => {
+  const [inputValues, setInputValues] = useState({});
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+
+    setInputValues({ ...inputValues, [name]: value });
+  };
+  return (
+    <ModalWithForm
+      title="Log in"
+      name="login__user"
+      buttonText="Log in"
+      buttonRedirectText="or Register"
+      redirect={onRedirect}
+      onClose={onCloseModal}
+      onSubmit={() => {
+        console.log('submit login button clicked');
+      }}
+      isOpen={isOpen}
+    >
+      {/* Email input */}
+      <div className="modal__input">
+        Email
+        <input
+          id="modal__input-email"
+          className="modal__input-form"
+          name="email"
+          type="email"
+          placeholder="Email"
+          value={inputValues.email || ''}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <span className=""></span>
+      {/* Password input */}
+      <div className="modal__input">
+        Password
+        <input
+          id="modal__input-password"
+          className="modal__input-form"
+          name="password"
+          type="password"
+          placeholder="Password"
+          value={inputValues.password || ''}
+          onChange={handleInputChange}
+          required
+        />
+      </div>
+      <span className=""></span>
+    </ModalWithForm>
+  );
+};
+
+export default LoginModal;

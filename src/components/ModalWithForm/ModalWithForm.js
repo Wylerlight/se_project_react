@@ -5,6 +5,8 @@ const ModalWithForm = ({
   title,
   name,
   buttonText,
+  buttonRedirectText,
+  redirect,
   onClose,
   onSubmit,
   isOpen,
@@ -19,6 +21,9 @@ const ModalWithForm = ({
           <span className="modal__error"></span>
           <button type="submit" className="modal__submit">
             {buttonText}
+          </button>
+          <button type="button" className="modal__redirect" onClick={redirect}>
+            {buttonRedirectText}
           </button>
         </form>
       </div>
