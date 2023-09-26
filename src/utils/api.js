@@ -1,6 +1,8 @@
 const baseUrl =
   'https://my-json-server.typicode.com/Wylerlight/se_project_react';
 
+const newBaseUrl = 'http://localhost:3001';
+
 const checkResponse = (res) => {
   if (res.ok) {
     return res.json();
@@ -11,6 +13,7 @@ const checkResponse = (res) => {
 // GET Items
 export function getItems() {
   return fetch(`${baseUrl}/items`, {
+    method: 'GET',
     headers: {
       'Content-Type': 'application/json',
     },

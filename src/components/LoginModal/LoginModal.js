@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 
-const LoginModal = ({ isOpen, onCloseModal, onRedirect }) => {
+const LoginModal = ({ isOpen, onCloseModal, onRedirect, userLogin }) => {
   const [inputValues, setInputValues] = useState({});
 
   const handleInputChange = (e) => {
@@ -9,6 +9,12 @@ const LoginModal = ({ isOpen, onCloseModal, onRedirect }) => {
 
     setInputValues({ ...inputValues, [name]: value });
   };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    userLogin(inputValues);
+  };
+
   return (
     <ModalWithForm
       title="Log in"
@@ -17,9 +23,7 @@ const LoginModal = ({ isOpen, onCloseModal, onRedirect }) => {
       buttonRedirectText="or Register"
       redirect={onRedirect}
       onClose={onCloseModal}
-      onSubmit={() => {
-        console.log('submit login button clicked');
-      }}
+      onSubmit={handleSubmit}
       isOpen={isOpen}
     >
       {/* Email input */}

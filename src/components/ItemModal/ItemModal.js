@@ -1,6 +1,16 @@
 import './ItemModal.css';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { useContext } from 'react';
 
-const ItemModal = ({ onClose, selectedCard, handleOpenConfirm }) => {
+const ItemModal = ({
+  onClose,
+  selectedCard,
+  handleOpenConfirm,
+  isLoggedIn,
+}) => {
+  const currentUser = useContext(CurrentUserContext);
+  const isOwn = selectedCard.owner === currentUser?._id;
+
   return (
     <section className="modal" onClick={onClose}>
       <div className="modal__container item__modal-container">
@@ -18,13 +28,17 @@ const ItemModal = ({ onClose, selectedCard, handleOpenConfirm }) => {
           />
         </div>
         <p className="item__modal-weather">Weather: {selectedCard.weather}</p>
-        <button
-          className="item__modal-delete_button"
-          type="button"
-          onClick={handleOpenConfirm}
-        >
-          Delete item
-        </button>
+        {isOwn && isLoggedIn === true ? (
+          <button
+            className="item__modal-delete_button"
+            type="button"
+            onClick={() => handleOpenConfirm('confirmation-opened')}
+          >
+            Delete item
+          </button>
+        ) : (
+          <span></span>
+        )}
       </div>
     </section>
   );

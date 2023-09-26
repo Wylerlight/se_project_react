@@ -12,7 +12,6 @@ const RegisterModal = ({ isOpen, onCloseModal, onRedirect, userRegister }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log({ inputValues });
     userRegister(inputValues);
   };
 
@@ -36,6 +35,8 @@ const RegisterModal = ({ isOpen, onCloseModal, onRedirect, userRegister }) => {
           name="email"
           type="email"
           placeholder="Email"
+          minLength="1"
+          maxLength="30"
           value={inputValues.email || ''}
           onChange={handleInputChange}
           required
@@ -51,6 +52,8 @@ const RegisterModal = ({ isOpen, onCloseModal, onRedirect, userRegister }) => {
           name="password"
           type="password"
           placeholder="Password"
+          minLength="8"
+          maxLength="30"
           value={inputValues.password || ''}
           onChange={handleInputChange}
           required
@@ -83,7 +86,6 @@ const RegisterModal = ({ isOpen, onCloseModal, onRedirect, userRegister }) => {
           placeholder="Avatar URL"
           value={inputValues.avatar || ''}
           onChange={handleInputChange}
-          required
         />
       </div>
       <span className=""></span>

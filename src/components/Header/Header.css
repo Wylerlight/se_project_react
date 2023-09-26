@@ -60,11 +60,13 @@
 }
 
 .avatar__sign-up {
+  background: none;
   border-style: none;
   cursor: pointer;
 }
 
 .avatar__log-in {
+  background: none;
   border-style: none;
   cursor: pointer;
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import ItemCard from '../ItemCard/ItemCard';
 import './ClothesSection.css';
 
@@ -6,6 +5,7 @@ const ClothesSection = ({
   onSelectCard,
   openAddClothesModal,
   clothingItems,
+  currentUser,
 }) => {
   return (
     <div className="clothes__section">
@@ -21,8 +21,18 @@ const ClothesSection = ({
       </div>
       <div className="clothing__section-cards">
         {clothingItems.map((data) => {
+          const isOwn = data.owner === currentUser?._id;
+
           return (
-            <ItemCard key={data.id} data={data} onSelectCard={onSelectCard} />
+            <>
+              {isOwn && (
+                <ItemCard
+                  key={data._id}
+                  data={data}
+                  onSelectCard={onSelectCard}
+                />
+              )}
+            </>
           );
         })}
       </div>

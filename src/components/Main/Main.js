@@ -14,9 +14,8 @@ function Main({
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;
-  console.log(temp);
   const weatherFilter = () => {
-    if (temp >= 30) {
+    if (temp >= 30 && currentTemperatureUnit === 'C') {
       return 'hot';
     } else if (temp >= 19 && temp <= 29) {
       return 'warm';
@@ -24,7 +23,7 @@ function Main({
       return 'cold';
     }
 
-    if (temp >= 86) {
+    if (temp >= 86 && currentTemperatureUnit === 'F') {
       return 'hot';
     } else if (temp >= 66 && temp <= 85) {
       return 'warm';
@@ -33,7 +32,6 @@ function Main({
     }
   };
   const weatherTempFilter = weatherFilter();
-  console.log(weatherTempFilter);
   const filterCards = clothingItems.filter((item) => {
     return item.weather === weatherTempFilter;
   });

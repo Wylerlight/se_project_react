@@ -1,4 +1,4 @@
-const newBaseUrl = 'https://localhost:3001';
+const newBaseUrl = 'http://localhost:3001';
 
 function signup(data) {
   const { name, avatar, email, password } = data;
@@ -34,4 +34,18 @@ function signin(data) {
   });
 }
 
-export { signin, signup };
+//get Token
+function checkToken(token) {
+  return fetch(`${newBaseUrl}/users/me`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+  })
+    .then((res) => res.json())
+    .then((data) => data);
+}
+
+export { signin, signup, checkToken };
