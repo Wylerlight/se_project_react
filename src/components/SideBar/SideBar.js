@@ -1,15 +1,21 @@
-import avatar from '../../images/AvatarPicture.png';
 import './SideBar.css';
 
-const SideBar = ({ handleUserLogout, currentUser }) => {
+const SideBar = ({ handleUserLogout, currentUser, openModal }) => {
   return (
     <div className="sidebar">
       <div className="sidebar__avatar-wrapper">
-        <img
-          alt="sidebar__avatar"
-          src={avatar}
-          className="sidebar__avatar-picture"
-        />
+        {currentUser.avatar ? (
+          <img
+            alt="sidebar__avatar"
+            src={currentUser.avatar}
+            className="sidebar__avatar-picture"
+          />
+        ) : (
+          <div className="sidebar__avatar-picture">
+            <p id="avatar__picture-replacement">{currentUser.name[0]}</p>
+          </div>
+        )}
+
         <p className="sidebar__avatar-name">
           {currentUser ? currentUser.name : 'No Name'}
         </p>
@@ -19,7 +25,7 @@ const SideBar = ({ handleUserLogout, currentUser }) => {
           className="sidebar__button sidebar__edit-profile"
           type="button"
           onClick={() => {
-            console.log('Edit profile clicked');
+            openModal('edit-profile-modal-opened');
           }}
         >
           Edit Profile

@@ -22,8 +22,12 @@
   max-height: 328px;
 }
 
-.clothing-card-title {
+.clothing__card-title-wrapper {
   position: absolute;
+  display: flex;
+}
+
+.clothing-card-title {
   margin: 16px 0 0 0;
   padding: 0 12px;
   text-align: center;
@@ -34,6 +38,24 @@
   color: rgba(0, 0, 0, 0.6);
   background-color: #fff;
   border-radius: 4px;
+}
+
+.clothing__card-like-button-inactive {
+  background: transparent url('../../images/heart.svg') center no-repeat;
+  border: none;
+  width: 21px;
+  height: 18px;
+  cursor: pointer;
+  margin: 16px 0 0 10px;
+}
+
+.clothing__card-like-button-active {
+  background: transparent url('../../images/heart-active.svg') center no-repeat;
+  border: none;
+  width: 21px;
+  height: 18px;
+  cursor: pointer;
+  margin: 16px 0 0 10px;
 }
 
 .clothing-card-individual {

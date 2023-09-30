@@ -1,13 +1,38 @@
 import './ItemCard.css';
 
-const ItemCard = ({ data, onSelectCard }) => {
+const ItemCard = ({
+  data,
+  onSelectCard,
+  onCardLike,
+  isLoggedIn,
+  currentUser,
+}) => {
+  const isLiked = data.likes.some((likes) => likes === currentUser._id);
+
+  const itemLikeButtonClassname = () => {
+    return isLiked
+      ? 'clothing__card-like-button-active'
+      : 'clothing__card-like-button-inactive';
+  };
+
   return (
     <article className="clothing__cards-wrapper">
       <div
         className="clothing__card-items"
         id={`clothing__card-items_${data.name}`}
       >
-        <p className="clothing-card-title">{data.name}</p>
+        <div className="clothing__card-title-wrapper">
+          <p className="clothing-card-title">{data.name}</p>
+          {isLoggedIn && (
+            <button
+              type="button"
+              className={itemLikeButtonClassname()}
+              onClick={() => {
+                onCardLike(data, isLiked);
+              }}
+            ></button>
+          )}
+        </div>
         <img
           className="clothing-card-individual"
           id={`clothing-card-individual_${data.name}`}

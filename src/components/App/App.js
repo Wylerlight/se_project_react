@@ -18,8 +18,16 @@ import RegisterModal from '../RegisterModal/RegisterModal';
 import LoginModal from '../LoginModal/LoginModal';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import { signin, signup, checkToken } from '../../utils/auth';
+import {
+  signin,
+  signup,
+  checkToken,
+  editProfileData,
+  likeClothingItem,
+  dislikeClothingItem,
+} from '../../utils/auth';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import EditProfileModal from '../EditProfileModal/EditProfileModal';
 
 function App() {
   const [modalOpened, setModalOpened] = useState('');
@@ -43,8 +51,11 @@ function App() {
   useEffect(() => {
     getItems()
       .then((data) => {
-        // setClothingItems(data.data);
-        setClothingItems(data);
+        // This is with the MongoDB url
+        setClothingItems(data.data);
+
+        // This is with the TripleTen clothing database
+        // setClothingItems(data);
       })
       .catch((error) => {
         console.log(error);
@@ -134,7 +145,7 @@ function App() {
     deleteItems(cardElement)
       .then(() => {
         const newClothesList = clothingItems.filter((cards) => {
-          return cards.id !== cardElement;
+          return cards._id !== cardElement;
         });
         setClothingItems(newClothesList);
         closeModal();
@@ -148,7 +159,7 @@ function App() {
   const onAddItem = (values) => {
     postItems(values)
       .then((data) => {
-        setClothingItems([data, ...clothingItems]);
+        setClothingItems([...clothingItems, data]);
         closeModal();
       })
       .catch((err) => {
@@ -206,11 +217,8 @@ function App() {
 
     signin({ email, password })
       .then((res) => {
-        console.log(res);
-        checkToken(res).then((user) => {
-          console.log(user);
-
-          localStorage.setItem('jwt', res.token);
+        localStorage.setItem('jwt', res.token);
+        checkToken(res.token).then((user) => {
           setCurrentUser(user);
           setIsLoggedIn(true);
         });
@@ -225,6 +233,46 @@ function App() {
     localStorage.removeItem('jwt');
     setCurrentUser({});
     setIsLoggedIn(false);
+  };
+
+  // Handle Edit User profile data
+
+  const handleUserProfileData = (data) => {
+    editProfileData(data).then((res) => {
+      setCurrentUser(res.data);
+      closeModal();
+    });
+  };
+
+  ///////// Handle Likes ///////////
+  const handleLikeClick = (cardData, isLiked) => {
+    !isLiked
+      ? likeClothingItem(cardData._id)
+          .then((updatedCard) =>
+            setClothingItems((cards) =>
+              cards.map((mappedCards) =>
+                mappedCards._id === cardData._id
+                  ? updatedCard.data
+                  : mappedCards
+              )
+            )
+          )
+          .catch((err) => {
+            console.error(err);
+          })
+      : dislikeClothingItem(cardData._id)
+          .then((updatedCard) =>
+            setClothingItems((cards) =>
+              cards.map((mappedCards) =>
+                mappedCards._id === cardData._id
+                  ? updatedCard.data
+                  : mappedCards
+              )
+            )
+          )
+          .catch((err) => {
+            console.error(err);
+          });
   };
 
   useEffect(() => {
@@ -253,16 +301,21 @@ function App() {
                     onSelectCard={handleSelectedCard}
                     timeOfDay={timeOfDay()}
                     clothingItems={clothingItems}
+                    onCardLike={handleLikeClick}
+                    isLoggedIn={isLoggedIn}
+                    currentUser={currentUser}
                   />
                 </Route>
                 <ProtectedRoute path="/profile">
                   <Route path="/profile">
                     <Profile
                       onSelectCard={handleSelectedCard}
-                      openAddClothesModal={handleModalOpen}
                       clothingItems={clothingItems}
                       handleUserLogout={handleUserLogout}
                       currentUser={currentUser}
+                      openModal={handleModalOpen}
+                      onCardLike={handleLikeClick}
+                      isLoggedIn={isLoggedIn}
                     />
                   </Route>
                 </ProtectedRoute>
@@ -275,6 +328,7 @@ function App() {
                   selectedCard={selectedCard}
                   handleOpenConfirm={handleModalOpen}
                   isLoggedIn={isLoggedIn}
+                  currentUser={currentUser}
                 />
               )}
 
@@ -307,6 +361,14 @@ function App() {
                   onCloseModal={handleCloseModal}
                   onRedirect={handleRedirect}
                   userLogin={handleUserLogin}
+                />
+              )}
+              {modalOpened === 'edit-profile-modal-opened' && (
+                <EditProfileModal
+                  isOpen={modalOpened === 'edit-profile-modal-opened'}
+                  onCloseModal={handleCloseModal}
+                  currentUser={currentUser}
+                  submitEditProfileData={handleUserProfileData}
                 />
               )}
             </div>

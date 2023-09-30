@@ -23,8 +23,11 @@
 
 .sidebar__avatar-picture {
   width: 56px;
-  border-radius: 50%;
+  height: 56px;
+  border-radius: 100%;
   background-color: #000;
+  display: flex;
+  justify-content: center;
 }
 
 .sidebar__avatar-name {

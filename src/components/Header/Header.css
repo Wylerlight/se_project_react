@@ -54,9 +54,21 @@
 }
 
 .avatar__picture {
-  border-radius: 50%;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
 
   background-color: #000;
+}
+
+#avatar__picture-replacement {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #fff;
 }
 
 .avatar__sign-up {

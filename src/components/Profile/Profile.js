@@ -5,19 +5,27 @@ import './Profile.css';
 
 const Profile = ({
   onSelectCard,
-  openAddClothesModal,
   clothingItems,
   handleUserLogout,
   currentUser,
+  openModal,
+  onCardLike,
+  isLoggedIn,
 }) => {
   return (
     <div className="profile">
-      <SideBar handleUserLogout={handleUserLogout} currentUser={currentUser} />
+      <SideBar
+        handleUserLogout={handleUserLogout}
+        currentUser={currentUser}
+        openModal={openModal}
+      />
       <ClothesSection
         onSelectCard={onSelectCard}
-        openAddClothesModal={openAddClothesModal}
+        openAddClothesModal={openModal}
         clothingItems={clothingItems}
         currentUser={currentUser}
+        onCardLike={onCardLike}
+        isLoggedIn={isLoggedIn}
       />
     </div>
   );

@@ -1,6 +1,5 @@
 import React from 'react';
 import logo from '../../Logo.svg';
-import avatar from '../../images/AvatarPicture.png';
 import './Header.css';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
 import { Link } from 'react-router-dom';
@@ -38,11 +37,17 @@ const Header = ({ locationData, openModal, isLoggedIn, currentUser }) => {
             </p>
 
             <Link to="/profile">
-              <img
-                alt="avatar"
-                src={avatar ? avatar : currentUser.name[0]}
-                className="avatar__picture"
-              />
+              {currentUser.avatar ? (
+                <img
+                  alt="avatar"
+                  src={currentUser.avatar}
+                  className="avatar__picture"
+                />
+              ) : (
+                <div className="avatar__picture">
+                  <p id="avatar__picture-replacement">{currentUser.name[0]}</p>
+                </div>
+              )}
             </Link>
           </>
         ) : (

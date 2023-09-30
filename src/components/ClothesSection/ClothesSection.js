@@ -6,6 +6,8 @@ const ClothesSection = ({
   openAddClothesModal,
   clothingItems,
   currentUser,
+  onCardLike,
+  isLoggedIn,
 }) => {
   return (
     <div className="clothes__section">
@@ -14,7 +16,7 @@ const ClothesSection = ({
         <button
           type="submit"
           className="clothes__section-button"
-          onClick={openAddClothesModal}
+          onClick={() => openAddClothesModal('new-clothes-modal')}
         >
           + Add new
         </button>
@@ -30,6 +32,9 @@ const ClothesSection = ({
                   key={data._id}
                   data={data}
                   onSelectCard={onSelectCard}
+                  onCardLike={onCardLike}
+                  isLoggedIn={isLoggedIn}
+                  currentUser={currentUser}
                 />
               )}
             </>
