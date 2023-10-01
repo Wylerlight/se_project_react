@@ -156,10 +156,26 @@ function App() {
   };
 
   // Add Item
+  /* 
+
   const onAddItem = (values) => {
     postItems(values)
       .then((data) => {
         setClothingItems([...clothingItems, data]);
+        closeModal();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+ */
+  const onAddItem = (clothingValues) => {
+    postItems(clothingValues)
+      .then((newClothingCard) => {
+        setClothingItems((oldClothingArray) => {
+          return [...oldClothingArray, newClothingCard.data];
+        });
         closeModal();
       })
       .catch((err) => {

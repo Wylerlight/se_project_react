@@ -24,6 +24,7 @@ const ClothesSection = ({
       <div className="clothing__section-cards">
         {clothingItems.map((data) => {
           const isOwn = data.owner === currentUser?._id;
+          console.log(typeof data._id);
 
           return (
             <>
