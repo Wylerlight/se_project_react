@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { CurrentTemperatureUnitContext } from '../../contexts/CurrentTemperatureUnitContext';
 import './Main.css';
 import WeatherCard from '../WeatherCard/WeatherCard';
@@ -12,8 +13,8 @@ function Main({
   clothingItems,
   onCardLike,
   isLoggedIn,
-  currentUser,
 }) {
+  const { currentUser } = useContext(CurrentUserContext);
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   const temp = weatherTemp?.temperature?.[currentTemperatureUnit] || 999;

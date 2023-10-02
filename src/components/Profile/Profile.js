@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+
 import SideBar from '../SideBar/SideBar';
 import ClothesSection from '../ClothesSection/ClothesSection';
 import './Profile.css';
@@ -7,11 +9,11 @@ const Profile = ({
   onSelectCard,
   clothingItems,
   handleUserLogout,
-  currentUser,
   openModal,
   onCardLike,
   isLoggedIn,
 }) => {
+  const { currentUser } = useContext(CurrentUserContext);
   return (
     <div className="profile">
       <SideBar

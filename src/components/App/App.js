@@ -293,7 +293,6 @@ function App() {
                 locationData={location}
                 openModal={handleModalOpen}
                 isLoggedIn={isLoggedIn}
-                currentUser={currentUser}
               />
               <Switch>
                 <Route exact path="/">
@@ -305,7 +304,6 @@ function App() {
                     clothingItems={clothingItems}
                     onCardLike={handleLikeClick}
                     isLoggedIn={isLoggedIn}
-                    currentUser={currentUser}
                   />
                 </Route>
                 <ProtectedRoute path="/profile">
@@ -314,7 +312,6 @@ function App() {
                       onSelectCard={handleSelectedCard}
                       clothingItems={clothingItems}
                       handleUserLogout={handleUserLogout}
-                      currentUser={currentUser}
                       openModal={handleModalOpen}
                       onCardLike={handleLikeClick}
                       isLoggedIn={isLoggedIn}
@@ -330,7 +327,6 @@ function App() {
                   selectedCard={selectedCard}
                   handleOpenConfirm={handleModalOpen}
                   isLoggedIn={isLoggedIn}
-                  currentUser={currentUser}
                 />
               )}
 
@@ -369,7 +365,6 @@ function App() {
                 <EditProfileModal
                   isOpen={modalOpened === 'edit-profile-modal-opened'}
                   onCloseModal={handleCloseModal}
-                  currentUser={currentUser}
                   submitEditProfileData={handleUserProfileData}
                 />
               )}

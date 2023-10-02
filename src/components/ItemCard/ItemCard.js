@@ -1,12 +1,10 @@
+import { useContext } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import './ItemCard.css';
 
-const ItemCard = ({
-  data,
-  onSelectCard,
-  onCardLike,
-  isLoggedIn,
-  currentUser,
-}) => {
+const ItemCard = ({ data, onSelectCard, onCardLike, isLoggedIn }) => {
+  const { currentUser } = useContext(CurrentUserContext);
+
   const isLiked = data.likes.some((likes) => likes === currentUser._id);
 
   const itemLikeButtonClassname = () => {

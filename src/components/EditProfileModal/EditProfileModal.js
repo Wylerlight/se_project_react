@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import ModalWithForm from '../ModalWithForm/ModalWithForm';
 
-const EditProfileModal = ({
-  isOpen,
-  onCloseModal,
-  currentUser,
-  submitEditProfileData,
-}) => {
+const EditProfileModal = ({ isOpen, onCloseModal, submitEditProfileData }) => {
+  const { currentUser } = useContext(CurrentUserContext);
   const [inputValues, setInputValues] = useState(currentUser);
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,9 +29,9 @@ const EditProfileModal = ({
     >
       {/* Name input */}
       <div className="modal__input">
-        Name*
+        <label htmlFor="modal__input-edit-name">Name*</label>
         <input
-          id="modal__input-name"
+          id="modal__input-edit-name"
           className="modal__input-form"
           name="name"
           type="text"
@@ -47,9 +44,9 @@ const EditProfileModal = ({
       <span className=""></span>
       {/* Avatar input */}
       <div className="modal__input">
-        Avatar
+        <label htmlFor="modal__input-edit-avatar">Avatar</label>
         <input
-          id="modal__input-avatar"
+          id="modal__input-edit-avatar"
           className="modal__input-form"
           name="avatar"
           type="url"

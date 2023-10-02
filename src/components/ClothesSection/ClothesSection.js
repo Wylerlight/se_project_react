@@ -34,7 +34,6 @@ const ClothesSection = ({
                   onSelectCard={onSelectCard}
                   onCardLike={onCardLike}
                   isLoggedIn={isLoggedIn}
-                  currentUser={currentUser}
                 />
               )}
             </React.Fragment>

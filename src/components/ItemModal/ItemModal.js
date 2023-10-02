@@ -1,3 +1,6 @@
+import { useContext } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+
 import './ItemModal.css';
 
 const ItemModal = ({
@@ -5,8 +8,8 @@ const ItemModal = ({
   selectedCard,
   handleOpenConfirm,
   isLoggedIn,
-  currentUser,
 }) => {
+  const { currentUser } = useContext(CurrentUserContext);
   const isOwn = selectedCard.owner === currentUser?._id;
 
   return (

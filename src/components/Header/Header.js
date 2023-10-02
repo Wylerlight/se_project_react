@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+
 import logo from '../../Logo.svg';
 import './Header.css';
 import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
 import { Link } from 'react-router-dom';
 
-const Header = ({ locationData, openModal, isLoggedIn, currentUser }) => {
+const Header = ({ locationData, openModal, isLoggedIn }) => {
+  const { currentUser } = useContext(CurrentUserContext);
   const currentDate = new Date().toLocaleString('default', {
     month: 'long',
     day: 'numeric',
