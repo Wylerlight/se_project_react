@@ -28,7 +28,7 @@ const RegisterModal = ({ isOpen, onCloseModal, onRedirect, userRegister }) => {
     >
       {/* Email input */}
       <div className="modal__input">
-        Email*
+        <label htmlFor="modal__input-email">Email*</label>
         <input
           id="modal__input-email"
           className="modal__input-form"
@@ -45,7 +45,7 @@ const RegisterModal = ({ isOpen, onCloseModal, onRedirect, userRegister }) => {
       <span className=""></span>
       {/* Password input */}
       <div className="modal__input">
-        Password*
+        <label htmlFor="modal__input-password">Password*</label>
         <input
           id="modal__input-password"
           className="modal__input-form"
@@ -62,9 +62,9 @@ const RegisterModal = ({ isOpen, onCloseModal, onRedirect, userRegister }) => {
       <span className=""></span>
       {/* Name Input */}
       <div className="modal__input">
-        Name
+        <label htmlFor="modal__input-register-name">Name</label>
         <input
-          id="modal__input-name"
+          id="modal__input-register-name"
           className="modal__input-form"
           name="name"
           type="text"
@@ -77,9 +77,9 @@ const RegisterModal = ({ isOpen, onCloseModal, onRedirect, userRegister }) => {
       <span className=""></span>
       {/* Image URL Input */}
       <div className="modal__input">
-        Avatar URL
+        <label htmlFor="modal__input-register-url">Avatar URL</label>
         <input
-          id="modal__input-url"
+          id="modal__input-register-url"
           className="modal__input-form"
           name="avatar"
           type="url"

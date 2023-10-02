@@ -1,3 +1,5 @@
+import { checkResponse } from './weatherApi';
+
 const newBaseUrl = 'http://localhost:3001';
 function getToken() {
   return localStorage.getItem('jwt');
@@ -12,12 +14,7 @@ function signup(data) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ name, avatar, email, password }),
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 }
 
 function signin(data) {
@@ -29,12 +26,7 @@ function signin(data) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ email, password }),
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 }
 
 function editProfileData(data) {
@@ -48,12 +40,7 @@ function editProfileData(data) {
       Authorization: `Bearer ${getToken()}`,
     },
     body: JSON.stringify(data),
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 }
 
 // Like clothing item
@@ -65,12 +52,7 @@ function likeClothingItem(itemId) {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${getToken()}`,
     },
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 }
 
 // Dislike clothing item
@@ -82,12 +64,7 @@ function dislikeClothingItem(itemId) {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${getToken()}`,
     },
-  }).then((res) => {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Error: ${res.status}`);
-  });
+  }).then(checkResponse);
 }
 
 //get Token

@@ -33,7 +33,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
       isOpen={isOpen}
     >
       <div className="modal__input">
-        Name
+        <label htmlFor="modal__input-name">Name</label>
         <input
           id="modal__input-name"
           className="modal__input-form"
@@ -48,7 +48,7 @@ const AddItemModal = ({ isOpen, onAddItem, onCloseModal }) => {
       <span className=""></span>
       {/* Image URL Input */}
       <div className="modal__input">
-        Image
+        <label htmlFor="modal__input-url">Image</label>
         <input
           id="modal__input-url"
           className="modal__input-form"

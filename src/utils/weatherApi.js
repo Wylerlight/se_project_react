@@ -7,7 +7,7 @@ export const getWeather = () => {
   return weatherApi;
 };
 
-const checkResponse = (res) => {
+export const checkResponse = (res) => {
   if (res.ok) {
     return res.json();
   } else {

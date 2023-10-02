@@ -28,7 +28,7 @@ const LoginModal = ({ isOpen, onCloseModal, onRedirect, userLogin }) => {
     >
       {/* Email input */}
       <div className="modal__input">
-        Email
+        <label htmlFor="modal__input-email">Email</label>
         <input
           id="modal__input-email"
           className="modal__input-form"
@@ -43,7 +43,7 @@ const LoginModal = ({ isOpen, onCloseModal, onRedirect, userLogin }) => {
       <span className=""></span>
       {/* Password input */}
       <div className="modal__input">
-        Password
+        <label htmlFor="modal__input-password">Password</label>
         <input
           id="modal__input-password"
           className="modal__input-form"

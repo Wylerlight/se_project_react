@@ -1,3 +1,5 @@
+import { checkResponse } from './weatherApi';
+
 const baseUrl =
   'https://my-json-server.typicode.com/Wylerlight/se_project_react';
 
@@ -6,12 +8,6 @@ const newBaseUrl = 'http://localhost:3001';
 function getToken() {
   return localStorage.getItem('jwt');
 }
-const checkResponse = (res) => {
-  if (res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Error: ${res.status}`);
-};
 
 // GET Items
 export function getItems() {

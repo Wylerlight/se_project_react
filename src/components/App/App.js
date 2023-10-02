@@ -109,7 +109,7 @@ function App() {
 
   const handleCloseModal = (e) => {
     if (e.target === e.currentTarget) {
-      setModalOpened('');
+      closeModal();
     }
   };
 
@@ -156,25 +156,12 @@ function App() {
   };
 
   // Add Item
-  /* 
 
-  const onAddItem = (values) => {
-    postItems(values)
-      .then((data) => {
-        setClothingItems([...clothingItems, data]);
-        closeModal();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
- */
   const onAddItem = (clothingValues) => {
     postItems(clothingValues)
       .then((newClothingCard) => {
         setClothingItems((oldClothingArray) => {
-          return [...oldClothingArray, newClothingCard.data];
+          return [newClothingCard.data, ...oldClothingArray];
         });
         closeModal();
       })
@@ -234,10 +221,7 @@ function App() {
     signin({ email, password })
       .then((res) => {
         localStorage.setItem('jwt', res.token);
-        checkToken(res.token).then((user) => {
-          setCurrentUser(user);
-          setIsLoggedIn(true);
-        });
+        verifyToken();
       })
       .then(() => {
         closeModal();
@@ -254,10 +238,12 @@ function App() {
   // Handle Edit User profile data
 
   const handleUserProfileData = (data) => {
-    editProfileData(data).then((res) => {
-      setCurrentUser(res.data);
-      closeModal();
-    });
+    editProfileData(data)
+      .then((res) => {
+        setCurrentUser(res.data);
+        closeModal();
+      })
+      .catch((err) => console.error(err));
   };
 
   ///////// Handle Likes ///////////
