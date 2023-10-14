@@ -1,7 +1,12 @@
 import { checkResponse } from './weatherApi';
 
+/* const baseUrl =
+  'https://my-json-server.typicode.com/Wylerlight/se_project_react'; */
+
 const baseUrl =
-  'https://my-json-server.typicode.com/Wylerlight/se_project_react';
+  process.env.NODE_ENV === 'production'
+    ? 'https://api.wtwr.zmurk.com'
+    : 'http://localhost:3001';
 
 const newBaseUrl = 'http://localhost:3001';
 

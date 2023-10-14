@@ -1,5 +1,10 @@
 import { checkResponse } from './weatherApi';
 
+const baseUrl =
+  process.env.NODE_ENV === 'production'
+    ? 'https://api.wtwr.zmurk.com'
+    : 'http://localhost:3001';
+
 const newBaseUrl = 'http://localhost:3001';
 function getToken() {
   return localStorage.getItem('jwt');
