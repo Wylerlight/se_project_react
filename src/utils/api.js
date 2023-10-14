@@ -16,7 +16,7 @@ function getToken() {
 
 // GET Items
 export function getItems() {
-  return fetch(`${newBaseUrl}/items`, {
+  return fetch(`${baseUrl}/items`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export function getItems() {
 
 // POST Items
 export function postItems({ name, weather, imageUrl }) {
-  return fetch(`${newBaseUrl}/items`, {
+  return fetch(`${baseUrl}/items`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ export function postItems({ name, weather, imageUrl }) {
 
 // DELETE Items
 export function deleteItems(id) {
-  return fetch(`${newBaseUrl}/items/${id}`, {
+  return fetch(`${baseUrl}/items/${id}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',

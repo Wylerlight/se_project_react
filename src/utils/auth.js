@@ -13,7 +13,7 @@ function getToken() {
 function signup(data) {
   const { name, avatar, email, password } = data;
 
-  return fetch(`${newBaseUrl}/signup`, {
+  return fetch(`${baseUrl}/signup`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ function signup(data) {
 function signin(data) {
   const { email, password } = data;
 
-  return fetch(`${newBaseUrl}/signin`, {
+  return fetch(`${baseUrl}/signin`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ function signin(data) {
 function editProfileData(data) {
   // const { email, avatar, name } = data;
 
-  return fetch(`${newBaseUrl}/users/me`, {
+  return fetch(`${baseUrl}/users/me`, {
     method: 'PATCH',
     headers: {
       Accept: 'application/json',
@@ -50,7 +50,7 @@ function editProfileData(data) {
 
 // Like clothing item
 function likeClothingItem(itemId) {
-  return fetch(`${newBaseUrl}/items/${itemId}/likes`, {
+  return fetch(`${baseUrl}/items/${itemId}/likes`, {
     method: 'PUT',
     headers: {
       Accept: 'application/json',
@@ -62,7 +62,7 @@ function likeClothingItem(itemId) {
 
 // Dislike clothing item
 function dislikeClothingItem(itemId) {
-  return fetch(`${newBaseUrl}/items/${itemId}/likes`, {
+  return fetch(`${baseUrl}/items/${itemId}/likes`, {
     method: 'DELETE',
     headers: {
       Accept: 'application/json',
@@ -74,7 +74,7 @@ function dislikeClothingItem(itemId) {
 
 //get Token
 function checkToken(token) {
-  return fetch(`${newBaseUrl}/users/me`, {
+  return fetch(`${baseUrl}/users/me`, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
